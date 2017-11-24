@@ -1,12 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import Button from './welcome/workspace_button.jsx'
+import Registration from './new_workspace/user_registration.jsx'
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
     <div>
-      <Button classname="workspace_btn" text="Your Workspase"/>
+      <Registration isdisabled="true" />
       </div>,
     document.getElementById("content"))
 })
