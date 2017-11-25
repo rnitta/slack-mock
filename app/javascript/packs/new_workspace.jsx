@@ -12,43 +12,22 @@ class Parent extends React.Component {
       email: "",
       user_name: "",
       display_name: "",
-      style_email: {
-        visibility: "visible"
-      },
-      style_name: {
-        visibility: "hidden"
-      },
-      style_password: {
-        visibility: "hidden"
-      }
+      style_email: "visible",
+      style_name: "hidden",
+      style_password: "hidden"
+
     }
   }
   updateEmail(email) {
-    this.setState({
-      style_email: {
-        visibility: "hidden"
-      },
-      style_name: {
-        visibility: "visible"
-      }
-    })
+    this.setState({style_email: "hidden", style_name: "visible"})
     this.setState(email)
   }
   updateName(name) {
-    this.setState({
-      style_name: {
-        visibility: "hidden"
-      },
-      style_password: {visibility: "visible"}
-    })
+    this.setState({style_name: "hidden", style_password: "visible"})
     this.setState(name, () => {})
   }
   updatePassword(password) {
-    this.setState({
-      style_password: {
-        visibility: "hidden"
-      }
-    })
+    this.setState({style_password: "hidden"})
     this.setState(password, () => {})
   }
 
@@ -57,7 +36,7 @@ class Parent extends React.Component {
       <div>
         <EmailRegistration style={this.state.style_email} updateEmail={this.updateEmail.bind(this)}/>
         <NameRegistration style={this.state.style_name} updateName={this.updateName.bind(this)}/>
-        <PasswordRegistration style={this.state.style_password} updateName={this.updateName.bind(this)}/>
+        <PasswordRegistration style={this.state.style_password} updatePassword={this.updatePassword.bind(this)}/>
       </div>
     )
   }
