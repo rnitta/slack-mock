@@ -17,9 +17,22 @@ class EmailConfirmationsController < ApplicationController
     end
   end
 
+  def check_code
+    emailconfirmation = EmailConfirmation.find_by(address: email_params)
+    p emailconfirmation
+    if code_params == emailconfirmation[:code]
+      render json: { success: true, token: emailconfirmation[:token] }
+    else
+      render json: { success: false }
+    end
+  end
+
   private
 
   def email_params
     params.require(:email)
+  end
+  def code_params
+    params.require(:code)
   end
 end

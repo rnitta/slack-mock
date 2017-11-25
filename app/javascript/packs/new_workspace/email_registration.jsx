@@ -17,19 +17,15 @@ export default class EmailRegistration extends React.Component {
     }
     this.setState({isdisabled: true})
     axios.defaults.headers['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-    axios
-      .post('/api/email_confirmation', { email: this.state.email })
-      .then((results) => {
-        if(results.data.success){
-          // Parentのステートを更新
-          this.props.updateEmail({email: this.state.email})
-        }
-      },
-      )
-      .catch(() => {
-        console.log('エラー')
-        return false
-      });
+    axios.post('/api/new_email', {email: this.state.email}).then((results) => {
+      if (results.data.success) {
+        // Parentのステートを更新
+        this.props.updateEmail({email: this.state.email})
+      }
+    },).catch(() => {
+      console.log('エラー')
+      return false
+    });
   }
   validate_email(e) {
     // メールアドレスが有効か検証
@@ -45,7 +41,7 @@ export default class EmailRegistration extends React.Component {
         visibility: this.props.style
       }}>
         <input type="email" placeholder="your@adress.here" id="email_input" onChange={(e) => this.validate_email(e)}/>
-        <button id="submit_btn" disabled={this.state.isdisabled} onClick={this.updateState.bind(this)}>Enter</button>
+        <button id="submit_email" disabled={this.state.isdisabled} onClick={this.updateState.bind(this)}>Enter</button>
       </form>
     );
   }
