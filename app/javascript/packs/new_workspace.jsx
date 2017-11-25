@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import axios from 'axios'
 
 import EmailRegistration from './new_workspace/email_registration.jsx'
 import EmailConfirmation from './new_workspace/email_confirmation.jsx'
@@ -22,7 +23,7 @@ class Parent extends React.Component {
       style_name: "hidden",
       style_password: "hidden",
       style_workspacename: "hidden",
-            style_workspacedomain: "hidden"
+      style_workspacedomain: "hidden"
 
     }
   }
@@ -49,6 +50,21 @@ class Parent extends React.Component {
   update_workspace_domain(workspace_domain) {
     this.setState({style_workspacedomain: "hidden"})
     this.setState(workspace_domain)
+    this.create_workspace()
+  }
+  create_workspace() {
+    console.log(this.state)
+    axios.defaults.headers['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+    axios.post('/api/create_workspace', this.state).then((results) => {
+      if (results.data.success) {
+        alert('done!')
+      } else {
+        alert('エラー')
+      }
+    },).catch(() => {
+      alert('エラー')
+      return false
+    });
   }
 
   render() {
