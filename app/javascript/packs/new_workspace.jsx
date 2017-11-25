@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 
 import EmailRegistration from './new_workspace/email_registration.jsx'
 import NameRegistration from './new_workspace/name_registration.jsx'
+import PasswordRegistration from './new_workspace/password_registration.jsx'
 
 class Parent extends React.Component {
   constructor(props) {
@@ -15,6 +16,9 @@ class Parent extends React.Component {
         visibility: "visible"
       },
       style_name: {
+        visibility: "hidden"
+      },
+      style_password: {
         visibility: "hidden"
       }
     }
@@ -34,9 +38,18 @@ class Parent extends React.Component {
     this.setState({
       style_name: {
         visibility: "hidden"
-      }
+      },
+      style_password: {visibility: "visible"}
     })
     this.setState(name, () => {})
+  }
+  updatePassword(password) {
+    this.setState({
+      style_password: {
+        visibility: "hidden"
+      }
+    })
+    this.setState(password, () => {})
   }
 
   render() {
@@ -44,6 +57,7 @@ class Parent extends React.Component {
       <div>
         <EmailRegistration style={this.state.style_email} updateEmail={this.updateEmail.bind(this)}/>
         <NameRegistration style={this.state.style_name} updateName={this.updateName.bind(this)}/>
+        <PasswordRegistration style={this.state.style_password} updateName={this.updateName.bind(this)}/>
       </div>
     )
   }

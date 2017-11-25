@@ -28,7 +28,7 @@ export default class EmailRegistration extends React.Component {
   }
   validate_user_name(e) {
     // ユーザー名が有効か検証(空白・文字数)
-    if (!!e.target.value && e.target.value !== "" && e.target.value.length != 0 && e.target.value.length < 51) {
+    if (!!e.target.value && e.target.value.length > 2 && e.target.value.length < 51) {
       this.setState({user_name: e.target.value, check_user: true})
     } else {
       this.setState({check_user: false})

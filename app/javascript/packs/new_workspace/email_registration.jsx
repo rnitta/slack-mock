@@ -19,6 +19,8 @@ export default class EmailRegistration extends React.Component {
     let regex = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/ //要検証
     if (regex.test(e.target.value)) {
       this.setState({isdisabled: false, email: e.target.value})
+    } else {
+      this.setState({isdisabled: true})
     }
   }
   render() {
