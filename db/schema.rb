@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20171125231616) do
     t.string "token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["address"], name: "index_email_confirmations_on_address", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -35,7 +36,6 @@ ActiveRecord::Schema.define(version: 20171125231616) do
     t.datetime "updated_at", null: false
     t.string "password_digest"
     t.index ["email", "workspace_id"], name: "index_users_on_email_and_workspace_id", unique: true
-    t.index [nil], name: "index_users_on_address", unique: true
   end
 
   create_table "workspaces", force: :cascade do |t|

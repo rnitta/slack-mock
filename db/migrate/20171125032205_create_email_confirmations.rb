@@ -8,6 +8,6 @@ class CreateEmailConfirmations < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
-    add_index :users, :address, unique: true
+    add_index :email_confirmations, :address, unique: true
   end
 end
