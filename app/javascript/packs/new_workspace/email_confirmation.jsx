@@ -30,9 +30,18 @@ export default class EmailConfirmation extends React.Component {
       if (results.data.success) {
         // Parentのステートを更新
         this.props.updateCode({code: full_code, token: results.data.token})
+      }else{
+        alert('コードが違います')
+        for (var i = 0; i < 6; i++) {
+          document.getElementsByClassName('single_code_input')[i].value = ""
+        }
+        document.getElementsByClassName('single_code_input')[0].focus()
       }
     },).catch(() => {
-      console.log('エラー')
+      alert('エラー')
+      for (var i = 0; i < 6; i++) {
+        document.getElementsByClassName('single_code_input')[i].value = ""
+      }
       return false
     });
   }
