@@ -5,6 +5,7 @@ import EmailRegistration from './new_workspace/email_registration.jsx'
 import EmailConfirmation from './new_workspace/email_confirmation.jsx'
 import NameRegistration from './new_workspace/name_registration.jsx'
 import PasswordRegistration from './new_workspace/password_registration.jsx'
+import WorkspaceName from './new_workspace/workspace_name_registration.jsx'
 
 class Parent extends React.Component {
   constructor(props) {
@@ -18,7 +19,8 @@ class Parent extends React.Component {
       style_email: "visible",
       style_code: "hidden",
       style_name: "hidden",
-      style_password: "hidden"
+      style_password: "hidden",
+      style_workspacename: "hidden"
 
     }
   }
@@ -35,8 +37,12 @@ class Parent extends React.Component {
     this.setState(name)
   }
   updatePassword(password) {
-    this.setState({style_password: "hidden"})
+    this.setState({style_password: "hidden", style_workspacename: "visible"})
     this.setState(password)
+  }
+  updateWorkspaceName(workspace_name) {
+    this.setState({style_workspacename: "hidden"})
+    this.setState(workspace_name)
   }
 
   render() {
@@ -46,6 +52,7 @@ class Parent extends React.Component {
         <EmailConfirmation style={this.state.style_code} email={this.state.email} updateCode={this.updateCode.bind(this)}/>
         <NameRegistration style={this.state.style_name} updateName={this.updateName.bind(this)}/>
         <PasswordRegistration style={this.state.style_password} updatePassword={this.updatePassword.bind(this)}/>
+        <WorkspaceName style={this.state.style_workspacename} updateWorkspaceName={this.updateWorkspaceName.bind(this)}/>
       </div>
     )
   }

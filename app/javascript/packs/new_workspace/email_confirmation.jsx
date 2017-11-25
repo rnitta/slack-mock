@@ -26,7 +26,6 @@ export default class EmailConfirmation extends React.Component {
       email: this.props.email,
       code: full_code
     }).then((results) => {
-      console.log(results)
       if (results.data.success) {
         // Parentのステートを更新
         this.props.updateCode({code: full_code, token: results.data.token})

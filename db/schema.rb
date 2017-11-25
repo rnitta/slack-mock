@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171125032205) do
+ActiveRecord::Schema.define(version: 20171125193653) do
 
   create_table "email_confirmations", force: :cascade do |t|
     t.string "address"
@@ -41,6 +41,8 @@ ActiveRecord::Schema.define(version: 20171125032205) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "domain"
+    t.index ["domain"], name: "index_workspaces_on_domain", unique: true
   end
 
 end

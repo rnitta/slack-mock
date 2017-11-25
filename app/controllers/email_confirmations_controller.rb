@@ -18,7 +18,7 @@ class EmailConfirmationsController < ApplicationController
   end
 
   def check_code
-    emailconfirmation = EmailConfirmation.find_by(address: email_params)
+    emailconfirmation = EmailConfirmation.find_by(address: email_params.downcase)
     p emailconfirmation
     if code_params == emailconfirmation[:code]
       render json: { success: true, token: emailconfirmation[:token] }

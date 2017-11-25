@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default class EmailRegistration extends React.Component {
+export default class NameRegistration extends React.Component {
   constructor(props) {
     super(props)
     // stateの初期値を設定
