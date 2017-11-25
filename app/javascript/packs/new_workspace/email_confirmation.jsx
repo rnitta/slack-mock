@@ -10,7 +10,7 @@ export default class EmailConfirmation extends React.Component {
       code: ""
     }
   }
-  updateState(e) {
+  update_state(e) {
     e.preventDefault()
     var full_code = ''
     for (var i = 0; i < 6; i++) {
@@ -28,7 +28,7 @@ export default class EmailConfirmation extends React.Component {
     }).then((results) => {
       if (results.data.success) {
         // Parentのステートを更新
-        this.props.updateCode({code: full_code, token: results.data.token})
+        this.props.update_code({code: full_code, token: results.data.token})
       }else{
         alert('コードが違います')
         for (var i = 0; i < 6; i++) {
@@ -80,7 +80,7 @@ export default class EmailConfirmation extends React.Component {
         <input type="text" maxLength="1" className="single_code_input focus" onInput={() => {
           this.onInput(6)
         }}/>
-        <button id="submit_code" className="focus" disabled={this.state.isdisabled} onClick={this.updateState.bind(this)}>Enter</button>
+        <button id="submit_code" className="focus" disabled={this.state.isdisabled} onClick={this.update_state.bind(this)}>Enter</button>
       </form>
     );
   }

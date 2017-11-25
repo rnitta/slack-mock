@@ -12,7 +12,7 @@ export default class NameRegistration extends React.Component {
       isdisabled: true
     }
   }
-  updateState(e) {
+  update_state(e) {
     e.preventDefault()
     if (!this.state.check_user || !this.state.check_display) {
       return false
@@ -24,7 +24,7 @@ export default class NameRegistration extends React.Component {
       display_name = user_name
     }
     // Parentのステートを更新
-    this.props.updateName({user_name: user_name, display_name: display_name})
+    this.props.update_name({user_name: user_name, display_name: display_name})
   }
   validate_user_name(e) {
     // ユーザー名が有効か検証(空白・文字数)
@@ -57,7 +57,7 @@ export default class NameRegistration extends React.Component {
       <form id="name_form" style={{visibility: this.props.style}}>
         <input type="text" placeholder="ユーザ名" id="user_name_input" autoComplete="off" onChange={(e) => this.validate_user_name(e)}/>
         <input type="text" placeholder="表示名" id="display_name_input" autoComplete="off" onChange={(e) => this.validate_display_name(e)}/>
-        <button id="submit_name" disabled={this.state.isdisabled} onClick={this.updateState.bind(this)}>Enter</button>
+        <button id="submit_name" disabled={this.state.isdisabled} onClick={this.update_state.bind(this)}>Enter</button>
       </form>
     );
   }

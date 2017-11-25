@@ -10,7 +10,7 @@ export default class WorkspaceDomainRegistration extends React.Component {
       isdisabled: true
     }
   }
-  updateState(e) {
+  update_state(e) {
     e.preventDefault()
     if (!this.state.workspace_domain && this.state.workspace_domain.length >= 22) {
       return false
@@ -23,7 +23,7 @@ export default class WorkspaceDomainRegistration extends React.Component {
     }).then((results) => {
       if (results.data.success) {
         // Parentのステートを更新
-        this.props.updateWorkspaceDomain({domain: this.state.workspace_domain})
+        this.props.update_workspace_domain({domain: this.state.workspace_domain})
       }else{
         alert('すでに存在します')
       }
@@ -49,7 +49,7 @@ export default class WorkspaceDomainRegistration extends React.Component {
         visibility: this.props.style
       }}>
         <input type="text" maxLength="21" placeholder="workspace/xxxx <-" id="workspace_domain_input" autoComplete="off" onChange={(e) => this.validate_workspace_domain(e)}/>
-        <button id="submit_creation" disabled={this.state.isdisabled} onClick={this.updateState.bind(this)}>Enter</button>
+        <button id="submit_creation" disabled={this.state.isdisabled} onClick={this.update_state.bind(this)}>Enter</button>
       </form>
     );
   }

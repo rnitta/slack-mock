@@ -9,13 +9,13 @@ export default class WorkspaceName extends React.Component {
       isdisabled: true
     }
   }
-  updateState(e) {
+  update_state(e) {
     e.preventDefault()
     if (!this.state.workspace_name && this.state.workspace_name.length >= 51) {
       return false
     }
     // Parentのステートを更新
-    this.props.updateWorkspaceName({workspace_name: this.state.workspace_name})
+    this.props.update_workspace_name({workspace_name: this.state.workspace_name})
   }
   validate_workspace_name(e) {
     // ワークスペース名が有効か検証(空白・文字数)
@@ -32,7 +32,7 @@ export default class WorkspaceName extends React.Component {
         visibility: this.props.style
       }}>
         <input type="text" maxLength="50" placeholder="組織名" id="workspace_name_input" autoComplete="off" onChange={(e) => this.validate_workspace_name(e)}/>
-        <button id="submit_workspace_name" disabled={this.state.isdisabled} onClick={this.updateState.bind(this)}>Enter</button>
+        <button id="submit_workspace_name" disabled={this.state.isdisabled} onClick={this.update_state.bind(this)}>Enter</button>
       </form>
     );
   }

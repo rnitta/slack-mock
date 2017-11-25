@@ -26,27 +26,27 @@ class Parent extends React.Component {
 
     }
   }
-  updateEmail(email) {
+  update_email(email) {
     this.setState({style_email: "hidden", style_code: "visible"})
     this.setState(email)
   }
-  updateCode(code) {
+  update_code(code) {
     this.setState({style_code: "hidden", style_name: "visible"})
     this.setState(code)
   }
-  updateName(name) {
+  update_name(name) {
     this.setState({style_name: "hidden", style_password: "visible"})
     this.setState(name)
   }
-  updatePassword(password) {
+  update_password(password) {
     this.setState({style_password: "hidden", style_workspacename: "visible"})
     this.setState(password)
   }
-  updateWorkspaceName(workspace_name) {
+  update_workspace_name(workspace_name) {
     this.setState({style_workspacename: "hidden", style_workspacedomain: "visible"})
     this.setState(workspace_name)
   }
-  updateWorkspaceDomain(workspace_domain) {
+  update_workspace_domain(workspace_domain) {
     this.setState({style_workspacedomain: "hidden"})
     this.setState(workspace_domain)
   }
@@ -54,12 +54,12 @@ class Parent extends React.Component {
   render() {
     return (
       <div>
-        <EmailRegistration style={this.state.style_email} updateEmail={this.updateEmail.bind(this)}/>
-        <EmailConfirmation style={this.state.style_code} email={this.state.email} updateCode={this.updateCode.bind(this)}/>
-        <NameRegistration style={this.state.style_name} updateName={this.updateName.bind(this)}/>
-        <PasswordRegistration style={this.state.style_password} updatePassword={this.updatePassword.bind(this)}/>
-        <WorkspaceName style={this.state.style_workspacename} updateWorkspaceName={this.updateWorkspaceName.bind(this)}/>
-        <WorkspaceDomain style={this.state.style_workspacedomain} updateWorkspaceDomain={this.updateWorkspaceDomain.bind(this)}/>
+        <EmailRegistration style={this.state.style_email} update_email={this.update_email.bind(this)}/>
+        <EmailConfirmation style={this.state.style_code} email={this.state.email} update_code={this.update_code.bind(this)}/>
+        <NameRegistration style={this.state.style_name} update_name={this.update_name.bind(this)}/>
+        <PasswordRegistration style={this.state.style_password} update_password={this.update_password.bind(this)}/>
+        <WorkspaceName style={this.state.style_workspacename} update_workspace_name={this.update_workspace_name.bind(this)}/>
+        <WorkspaceDomain style={this.state.style_workspacedomain} update_workspace_domain={this.update_workspace_domain.bind(this)}/>
       </div>
     )
   }

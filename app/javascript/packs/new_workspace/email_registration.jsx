@@ -10,7 +10,7 @@ export default class EmailRegistration extends React.Component {
       email: ""
     }
   }
-  updateState(e) {
+  update_state(e) {
     e.preventDefault()
     if (!regex.test(this.state.email)) {
       return false
@@ -20,7 +20,7 @@ export default class EmailRegistration extends React.Component {
     axios.post('/api/new_email', {email: this.state.email}).then((results) => {
       if (results.data.success) {
         // Parentのステートを更新
-        this.props.updateEmail({email: this.state.email})
+        this.props.update_email({email: this.state.email})
       }
     },).catch(() => {
       console.log('エラー')
@@ -41,7 +41,7 @@ export default class EmailRegistration extends React.Component {
         visibility: this.props.style
       }}>
         <input type="email" placeholder="your@adress.here" id="email_input" onChange={(e) => this.validate_email(e)}/>
-        <button id="submit_email" disabled={this.state.isdisabled} onClick={this.updateState.bind(this)}>Enter</button>
+        <button id="submit_email" disabled={this.state.isdisabled} onClick={this.update_state.bind(this)}>Enter</button>
       </form>
     );
   }
