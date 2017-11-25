@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171123110854) do
+ActiveRecord::Schema.define(version: 20171125032205) do
+
+  create_table "email_confirmations", force: :cascade do |t|
+    t.string "address"
+    t.string "code"
+    t.string "token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email"
@@ -26,6 +34,7 @@ ActiveRecord::Schema.define(version: 20171123110854) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email", "workspace_id"], name: "index_users_on_email_and_workspace_id", unique: true
+    t.index [nil], name: "index_users_on_address", unique: true
   end
 
   create_table "workspaces", force: :cascade do |t|

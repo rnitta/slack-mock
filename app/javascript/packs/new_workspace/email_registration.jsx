@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 let regex = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/ //要検証
 export default class EmailRegistration extends React.Component {
   constructor(props) {
@@ -14,8 +15,21 @@ export default class EmailRegistration extends React.Component {
     if (!regex.test(this.state.email)) {
       return false
     }
-    // Parentのステートを更新
-    this.props.updateEmail({email: this.state.email})
+    this.setState({isdisabled: true})
+    axios.defaults.headers['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+    axios
+      .post('/api/email_confirmation', { email: this.state.email })
+      .then((results) => {
+        if(results.data.success){
+          // Parentのステートを更新
+          this.props.updateEmail({email: this.state.email})
+        }
+      },
+      )
+      .catch(() => {
+        console.log('エラー')
+        return false
+      });
   }
   validate_email(e) {
     // メールアドレスが有効か検証
