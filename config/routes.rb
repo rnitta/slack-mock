@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   get '/new_workspace', to: 'react#new_workspace'
   post '/api/new_email', to: 'email_confirmations#new'
   post '/api/check_code', to: 'email_confirmations#check_code'
+  post '/api/check_domain', to: 'workspaces#check_domain'
 end

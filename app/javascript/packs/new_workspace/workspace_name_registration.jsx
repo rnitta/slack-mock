@@ -18,7 +18,7 @@ export default class WorkspaceName extends React.Component {
     this.props.updateWorkspaceName({workspace_name: this.state.workspace_name})
   }
   validate_workspace_name(e) {
-    // ユーザー名が有効か検証(空白・文字数)
+    // ワークスペース名が有効か検証(空白・文字数)
     if (!!e.target.value && e.target.value.length < 51) {
       this.setState({workspace_name: e.target.value, isdisabled: false})
     } else {
@@ -32,7 +32,7 @@ export default class WorkspaceName extends React.Component {
         visibility: this.props.style
       }}>
         <input type="text" maxLength="50" placeholder="組織名" id="workspace_name_input" autoComplete="off" onChange={(e) => this.validate_workspace_name(e)}/>
-        <button id="submit_name" disabled={this.state.isdisabled} onClick={this.updateState.bind(this)}>Enter</button>
+        <button id="submit_workspace_name" disabled={this.state.isdisabled} onClick={this.updateState.bind(this)}>Enter</button>
       </form>
     );
   }
