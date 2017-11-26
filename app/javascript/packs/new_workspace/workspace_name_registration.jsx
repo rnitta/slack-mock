@@ -31,7 +31,9 @@ export default class WorkspaceName extends React.Component {
       <form id="workspace_name_form" style={{
         visibility: this.props.style
       }}>
-        <input type="text" maxLength="50" placeholder="組織名" id="workspace_name_input" autoComplete="off" onChange={(e) => this.validate_workspace_name(e)}/>
+      <h1>会社名 (団体名) は何ですか？</h1>
+      <label>会社名 (団体名)</label>
+        <input type="text" maxLength="50" placeholder="会社名 (団体名)" id="workspace_name_input" className="biginput" autoComplete="off" onChange={(e) => this.validate_workspace_name(e)}/>
         <button id="submit_workspace_name" disabled={this.state.isdisabled} onClick={this.update_state.bind(this)}>Enter</button>
       </form>
     );

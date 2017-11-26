@@ -40,8 +40,10 @@ export default class EmailRegistration extends React.Component {
       <form id="email_form" style={{
         visibility: this.props.style
       }}>
-        <input type="email" placeholder="your@adress.here" id="email_input" onChange={(e) => this.validate_email(e)}/>
-        <button id="submit_email" disabled={this.state.isdisabled} onClick={this.update_state.bind(this)}>Enter</button>
+        <h1>ワークスペースを新規作成する</h1>
+        <label>メールアドレス</label>
+        <input type="email" placeholder="your@adress.here" id="email_input" className="biginput" onChange={(e) => this.validate_email(e)}/>
+        <button id="submit_email" disabled={this.state.isdisabled} onClick={this.update_state.bind(this)}>次へ</button>
       </form>
     );
   }

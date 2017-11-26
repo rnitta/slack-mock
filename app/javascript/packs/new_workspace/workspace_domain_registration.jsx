@@ -48,7 +48,10 @@ export default class WorkspaceDomainRegistration extends React.Component {
       <form id="workspace_domain_form" style={{
         visibility: this.props.style
       }}>
-        <input type="text" maxLength="21" placeholder="workspace/xxxx <-" id="workspace_domain_input" autoComplete="off" onChange={(e) => this.validate_workspace_domain(e)}/>
+        <h1>ワークスペースのURLを設定してください。</h1>
+        <p>localhost:3000/workspace/xxxx　に当たる部分です</p>
+        <label>(英数のみ)</label>
+        <input type="text" maxLength="21" placeholder="workspace/xxxx <-" id="workspace_domain_input" className="biginput" autoComplete="off" onChange={(e) => this.validate_workspace_domain(e)}/>
         <button id="submit_creation" disabled={this.state.isdisabled} onClick={this.update_state.bind(this)}>Enter</button>
       </form>
     );

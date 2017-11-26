@@ -54,10 +54,16 @@ export default class NameRegistration extends React.Component {
   }
   render() {
     return (
-      <form id="name_form" style={{visibility: this.props.style}}>
-        <input type="text" placeholder="ユーザ名" id="user_name_input" autoComplete="off" onChange={(e) => this.validate_user_name(e)}/>
-        <input type="text" placeholder="表示名" id="display_name_input" autoComplete="off" onChange={(e) => this.validate_display_name(e)}/>
-        <button id="submit_name" disabled={this.state.isdisabled} onClick={this.update_state.bind(this)}>Enter</button>
+      <form id="name_form" style={{
+        visibility: this.props.style
+      }}>
+        <h1>あなたのお名前は何ですか？</h1>
+        <p>ここで設定した名前が、表示とメンションに使われます。</p>
+        <label>ユーザ名</label>
+        <input type="text" placeholder="ユーザ名" id="user_name_input" className="biginput" autoComplete="off" onChange={(e) => this.validate_user_name(e)}/>
+        <label>表示名(任意)</label>
+        <input type="text" placeholder="表示名" id="display_name_input" className="biginput" autoComplete="off" onChange={(e) => this.validate_display_name(e)}/>
+        <button id="submit_name" disabled={this.state.isdisabled} onClick={this.update_state.bind(this)}>パスワードに進む</button>
       </form>
     );
   }

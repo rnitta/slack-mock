@@ -69,7 +69,7 @@ class Parent extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="form_wrapper">
         <EmailRegistration style={this.state.style_email} update_email={this.update_email.bind(this)}/>
         <EmailConfirmation style={this.state.style_code} email={this.state.email} update_code={this.update_code.bind(this)}/>
         <NameRegistration style={this.state.style_name} update_name={this.update_name.bind(this)}/>

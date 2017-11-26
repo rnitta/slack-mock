@@ -29,7 +29,7 @@ export default class EmailConfirmation extends React.Component {
       if (results.data.success) {
         // Parentのステートを更新
         this.props.update_code({code: full_code, token: results.data.token})
-      }else{
+      } else {
         alert('コードが違います')
         for (var i = 0; i < 6; i++) {
           document.getElementsByClassName('single_code_input')[i].value = ""
@@ -62,24 +62,29 @@ export default class EmailConfirmation extends React.Component {
       <form id="code_form" style={{
         visibility: this.props.style
       }}>
-        <input type="text" maxLength="1" className="single_code_input focus" onInput={() => {
-          this.onInput(1)
-        }}/>
-        <input type="text" maxLength="1" className="single_code_input focus" onInput={() => {
-          this.onInput(2)
-        }}/>
-        <input type="text" maxLength="1" className="single_code_input focus" onInput={() => {
-          this.onInput(3)
-        }}/>
-        <input type="text" maxLength="1" className="single_code_input focus" onInput={() => {
-          this.onInput(4)
-        }}/>
-        <input type="text" maxLength="1" className="single_code_input focus" onInput={() => {
-          this.onInput(5)
-        }}/>
-        <input type="text" maxLength="1" className="single_code_input focus" onInput={() => {
-          this.onInput(6)
-        }}/>
+      <h1>メールをチェックしてください</h1>
+      <p>６桁の数字のコードを記載したメールを{this.props.email}に送信しました。</p>
+      <label>確認コード</label>
+        <div className="code_inputs">
+          <input type="text" maxLength="1" className="single_code_input focus" onInput={() => {
+            this.onInput(1)
+          }}/>
+          <input type="text" maxLength="1" className="single_code_input focus" onInput={() => {
+            this.onInput(2)
+          }}/>
+          <input type="text" maxLength="1" className="single_code_input focus" onInput={() => {
+            this.onInput(3)
+          }}/>
+          <input type="text" maxLength="1" className="single_code_input focus" onInput={() => {
+            this.onInput(4)
+          }}/>
+          <input type="text" maxLength="1" className="single_code_input focus" onInput={() => {
+            this.onInput(5)
+          }}/>
+          <input type="text" maxLength="1" className="single_code_input focus" onInput={() => {
+            this.onInput(6)
+          }}/>
+        </div>
         <button id="submit_code" className="focus" disabled={this.state.isdisabled} onClick={this.update_state.bind(this)}>Enter</button>
       </form>
     );

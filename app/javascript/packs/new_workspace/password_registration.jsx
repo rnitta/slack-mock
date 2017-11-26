@@ -25,8 +25,10 @@ export default class PasswordRegistration extends React.Component {
   render() {
     return (
       <form id="password_form" style={{visibility: this.props.style}}>
-        <input type="password" id="password_input" onChange={(e) => this.validate_password(e)}/>
-        <button id="submit_password" disabled={this.state.isdisabled} onClick={this.update_state.bind(this)}>Enter</button>
+        <h1>パスワードを設定する</h1>
+        <p>サインインするためのパスワードを選択してください。６文字以上。</p>
+        <input type="password" id="password_input" className="biginput" onChange={(e) => this.validate_password(e)}/>
+        <button id="submit_password" disabled={this.state.isdisabled} onClick={this.update_state.bind(this)}>ワークスペース情報に進む</button>
       </form>
     );
   }
