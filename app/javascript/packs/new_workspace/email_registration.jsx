@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-let regex = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/ //要検証
+let regex = /^[a-zA-Z]{1}[0-9a-zA-Z]+[\w\.-]+@[\w\.-]+\.\w{2,}$/ //要検証
 export default class EmailRegistration extends React.Component {
   constructor(props) {
     super(props)
@@ -42,7 +42,7 @@ export default class EmailRegistration extends React.Component {
       }}>
         <h1>ワークスペースを新規作成する</h1>
         <label>メールアドレス</label>
-        <input type="email" placeholder="your@adress.here" id="email_input" className="biginput" onChange={(e) => this.validate_email(e)}/>
+        <input type="email" placeholder="your@adress.here" id="email_input" className="biginput" pattern="^[a-zA-Z]{1}[0-9a-zA-Z]+[\w\.-]+@[\w\.-]+\.\w{2,}$" onChange={(e) => this.validate_email(e)}/>
         <button id="submit_email" disabled={this.state.isdisabled} onClick={this.update_state.bind(this)}>次へ</button>
       </form>
     );
