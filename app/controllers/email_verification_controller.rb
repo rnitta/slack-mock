@@ -10,7 +10,7 @@ class EmailVerificationController < ApplicationController
     email.token = SecureRandom.uuid
     if email.save
       # コードメール送信
-      EmailVerificationMailer.send_mail(email).deliver_later
+      VerificationCodeMailer.send_mail(email).deliver_later
       # JSONを返す
       render json: { success: true }
     end

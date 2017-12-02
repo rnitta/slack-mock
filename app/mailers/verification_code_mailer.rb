@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-class EmailVerificationMailer < ApplicationMailer
+class VerificationCodeMailer < ApplicationMailer
   default from: 'address@example.com'
 
   def send_mail(record)
