@@ -31,11 +31,12 @@ ActiveRecord::Schema.define(version: 20171125231616) do
     t.string "phone"
     t.string "skype"
     t.string "profile_img"
-    t.string "workspace_id"
+    t.integer "workspace_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
     t.index ["email", "workspace_id"], name: "index_users_on_email_and_workspace_id", unique: true
+    t.index ["workspace_id"], name: "index_users_on_workspace_id"
   end
 
   create_table "workspaces", force: :cascade do |t|

@@ -10,7 +10,7 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.string :phone
       t.string :skype
       t.string :profile_img
-      t.string :workspace_id
+      t.references :workspace, foreign_key: true
 
       t.timestamps
     end
