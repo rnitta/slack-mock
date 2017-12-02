@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 class WorkspacesController < ApplicationController
+  def new
+  end
   def check_domain
     workspace = Workspace.all
     if workspace.where(domain: workspace_params[:domain]).count.zero?
