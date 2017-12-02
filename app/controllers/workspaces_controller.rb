@@ -9,20 +9,15 @@ class WorkspacesController < ApplicationController
     end
   end
   def create_with_user
-    email = EmailConfirmation.find_by(token: params[:token]).address
-    workspace = Workspace.new
-    workspace.name = params[:workspace_name]
-    workspace.domain = params[:domain]
+    email = Email.find_by(token: params[:token])
+    workspace = Workspace.new(workspace_params)
     if workspace.save
-      user = User.new
-      user.email = email
-      user.display_name = params[:display_name]
-      user.user_name = params[:user_name]
-      user.password = params[:password]
-      user.password_confirmation = params[:password]
+      user = User.new(user_params)
+      p user
+      user.email = email.address
       user.workspace_id = workspace.id
       if user.save
-        EmailConfirmation.find_by(token: params[:token]).delete
+        email.delete
         render json: { success: true }
       else
         render json: { success: false }
@@ -30,5 +25,14 @@ class WorkspacesController < ApplicationController
     else
       render json: { success: false }
     end
+  end
+
+  private
+
+  def workspace_params
+    params.require(:workspace).permit(:name, :domain)
+  end
+  def user_params
+    params.require(:user).permit(:display_name, :user_name, :password, :password_confirmation)
   end
 end

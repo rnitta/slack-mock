@@ -18,6 +18,8 @@ class Parent extends React.Component {
       display_name: "",
       code: "",
       token: "",
+      domain: "",
+      workspace_name: "",
       style_email: "visible",
       style_code: "hidden",
       style_name: "hidden",
@@ -53,9 +55,20 @@ class Parent extends React.Component {
     this.create_workspace()
   }
   create_workspace() {
-    console.log(this.state)
     axios.defaults.headers['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-    axios.post('/api/create_workspace', this.state).then((results) => {
+    axios.post('/api/create_workspace', {
+      workspace: {
+        name: this.state.workspace_name,
+        domain: this.state.domain
+      },
+      user: {
+        display_name: this.state.display_name,
+        user_name: this.state.user_name,
+        password: this.state.password,
+        password_confirmation: this.state.password
+      },
+      token: this.state.token
+    }).then((results) => {
       if (results.data.success) {
         alert('done!')
       } else {
