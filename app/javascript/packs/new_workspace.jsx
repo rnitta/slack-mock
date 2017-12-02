@@ -25,8 +25,8 @@ class Parent extends React.Component {
       style_name: "hidden",
       style_password: "hidden",
       style_workspacename: "hidden",
-      style_workspacedomain: "hidden"
-
+      style_workspacedomain: "hidden",
+      csrf_token: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
     }
   }
   update_email(email) {
@@ -55,7 +55,7 @@ class Parent extends React.Component {
     this.create_workspace()
   }
   create_workspace() {
-    axios.defaults.headers['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+    axios.defaults.headers['X-CSRF-TOKEN'] = this.state.csrf_token
     axios.post('/api/create_workspace', {
       workspace: {
         name: this.state.workspace_name,
@@ -83,18 +83,16 @@ class Parent extends React.Component {
   render() {
     return (
       <div className="form_wrapper">
-        <EmailRegistration style={this.state.style_email} update_email={this.update_email.bind(this)}/>
-        <EmailConfirmation style={this.state.style_code} email={this.state.email} update_code={this.update_code.bind(this)}/>
+        <EmailRegistration style={this.state.style_email} update_email={this.update_email.bind(this)} csrf_token={this.state.csrf_token}/>
+        <EmailConfirmation style={this.state.style_code} email={this.state.email} update_code={this.update_code.bind(this)} csrf_token={this.state.csrf_token}/>
         <NameRegistration style={this.state.style_name} update_name={this.update_name.bind(this)}/>
         <PasswordRegistration style={this.state.style_password} update_password={this.update_password.bind(this)}/>
-        <WorkspaceName style={this.state.style_workspacename} update_workspace_name={this.update_workspace_name.bind(this)}/>
-        <WorkspaceDomain style={this.state.style_workspacedomain} update_workspace_domain={this.update_workspace_domain.bind(this)}/>
+        <WorkspaceName style={this.state.style_workspacename} update_workspace_name={this.update_workspace_name.bind(this)} csrf_token={this.state.csrf_token}/>
+        <WorkspaceDomain style={this.state.style_workspacedomain} update_workspace_domain={this.update_workspace_domain.bind(this)} csrf_token={this.state.csrf_token}/>
       </div>
     )
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
     <Parent/>, document.getElementById("content"))
-})

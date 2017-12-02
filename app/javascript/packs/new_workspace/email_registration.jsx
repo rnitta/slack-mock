@@ -16,7 +16,7 @@ export default class EmailRegistration extends React.Component {
       return false
     }
     this.setState({isdisabled: true})
-    axios.defaults.headers['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+    axios.defaults.headers['X-CSRF-TOKEN'] = this.props.csrf_token
     axios.post('/api/new_email', {email: this.state.email}).then((results) => {
       if (results.data.success) {
         // Parentのステートを更新
