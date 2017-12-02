@@ -2,18 +2,17 @@
 class WorkspacesController < ApplicationController
   def check_domain
     workspace = Workspace.all
-    if workspace.where(domain: params[:domain]).count.zero?
+    if workspace.where(domain: workspace_params[:domain]).count.zero?
       render json: { success: true }
     else
       render json: { success: false }
     end
   end
   def create_with_user
-    email = Email.find_by(token: params[:token])
+    email = Email.find_by(token: email_params[:token])
     workspace = Workspace.new(workspace_params)
     if workspace.save
       user = User.new(user_params)
-      p user
       user.email = email.address
       user.workspace_id = workspace.id
       if user.save
@@ -34,5 +33,8 @@ class WorkspacesController < ApplicationController
   end
   def user_params
     params.require(:user).permit(:display_name, :user_name, :password, :password_confirmation)
+  end
+  def email_params
+    params.require(:email).permit(:token)
   end
 end

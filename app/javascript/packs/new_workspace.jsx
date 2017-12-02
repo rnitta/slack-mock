@@ -67,7 +67,9 @@ class Parent extends React.Component {
         password: this.state.password,
         password_confirmation: this.state.password
       },
-      token: this.state.token
+      email: {
+        token: this.state.token
+      }
     }).then((results) => {
       if (results.data.success) {
         alert('done!')
@@ -94,5 +96,5 @@ class Parent extends React.Component {
   }
 }
 
-  ReactDOM.render(
-    <Parent/>, document.getElementById("content"))
+ReactDOM.render(
+  <Parent/>, document.getElementById("content"))
