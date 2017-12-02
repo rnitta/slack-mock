@@ -22,7 +22,7 @@ export default class EmailConfirmation extends React.Component {
     this.setState({isdisabled: true})
 
     axios.defaults.headers['X-CSRF-TOKEN'] = this.props.csrf_token
-    axios.post('/api/check_code', {
+    axios.post('/emails/check_code', {
       email: this.props.email,
       code: full_code
     }).then((results) => {

@@ -19,7 +19,7 @@ export default class WorkspaceDomainRegistration extends React.Component {
     this.setState({isdisabled: true})
     //　ドメインが重複していないかチェック
     axios.defaults.headers['X-CSRF-TOKEN'] = this.props.csrf_token
-    axios.post('/api/check_domain', {
+    axios.post('/workspaces/check_domain', {
       domain: this.state.workspace_domain
     }).then((results) => {
       if (results.data.success) {

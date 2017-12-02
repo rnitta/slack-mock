@@ -56,7 +56,7 @@ class Parent extends React.Component {
   }
   create_workspace() {
     axios.defaults.headers['X-CSRF-TOKEN'] = this.state.csrf_token
-    axios.post('/api/create_workspace', {
+    axios.post('/workspaces', {
       workspace: {
         name: this.state.workspace_name,
         domain: this.state.domain
