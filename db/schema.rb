@@ -12,13 +12,13 @@
 
 ActiveRecord::Schema.define(version: 20171125231616) do
 
-  create_table "email_confirmations", force: :cascade do |t|
+  create_table "emails", force: :cascade do |t|
     t.string "address"
     t.string "code"
     t.string "token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["address"], name: "index_email_confirmations_on_address", unique: true
+    t.index ["address"], name: "index_emails_on_address", unique: true
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
-class EmailConfirmationMailer < ApplicationMailer
+class EmailVerificationMailer < ApplicationMailer
   default from: 'address@example.com'
 
-  def send_confirm(record)
+  def send_mail(record)
     @record = record
     mail(
       subject: "確認コードは#{@record.code}です",
