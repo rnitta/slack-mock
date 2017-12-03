@@ -23,13 +23,22 @@ class Parent extends React.Component {
   }
   update_email_password(obj) {
     this.setState(obj, () => {
-      console.log(this.state)
+      this.set_localstorage()
     })
   }
+  set_localstorage() {
+    // jwtとワークスペース名はjsonでlocalstorageに保存
+    let data = {
+      token: this.state.token,
+      workspace_name: this.state.workspace_name
+    }
+    localStorage.setItem(this.state.domain, JSON.stringify(data))
+  }
+
   render() {
     return (
       <div className="form_wrapper">
-        <WorkspaceDomain style={this.state.style_workspace} update_domain={this.update_domain.bind(this)}  csrf_token={this.state.csrf_token}/>
+        <WorkspaceDomain style={this.state.style_workspace} update_domain={this.update_domain.bind(this)} csrf_token={this.state.csrf_token}/>
         <EmailPassword style={this.state.style_email_password} parentstate={this.state} update_email_password={this.update_email_password.bind(this)} csrf_token={this.state.csrf_token}/>
       </div>
     )
