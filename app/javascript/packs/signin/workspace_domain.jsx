@@ -13,7 +13,7 @@ export default class WorkspaceDomain extends React.Component {
     }
   }
   confirm_domain() {
-    let input_domain = document.getElementById('domain_input').value
+    let input_domain = this.refs.domain.value
     this.setState({
       isdisabled: true,
       error_style: {
@@ -47,7 +47,7 @@ export default class WorkspaceDomain extends React.Component {
         <h1>ワークスペースにサインインする</h1>
         <p>参加しているワークスペースのURLを入力してください</p>
         <div className="domain_inputs">
-          <span>/workspace/</span><input type="text" id="domain_input" className="biginput"/>
+          <span>/workspace/</span><input type="text" id="domain_input" className="biginput" ref="domain"/>
         </div>
         <p className="existence_error" style={this.state.error_style}>存在しないワークスペースです。</p>
         <button onClick={this.confirm_domain.bind(this)} id="submit_domain" disabled={this.state.isdisabled}>

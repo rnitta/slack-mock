@@ -14,8 +14,8 @@ export default class EmailPassword extends React.Component {
   }
 
   signin() {
-    let input_email = document.getElementById('email_input').value
-    let input_password = document.getElementById('password_input').value
+    let input_email = this.refs.email.value
+    let input_password = this.refs.password.value
     this.setState({
       isdisabled: true,
       error_style: {
@@ -56,9 +56,9 @@ export default class EmailPassword extends React.Component {
         <h1>{this.props.parentstate.workspace_name}({this.props.parentstate.domain})にサインイン</h1>
         <p>メールアドレスとパスワードを入力してください</p>
         <label>メールアドレス</label>
-        <input type="text" id="email_input" className="biginput"/>
+        <input type="text" id="email_input" className="biginput" ref="email"/>
         <label>パスワード</label>
-        <input type="password" id="password_input" className="biginput"/>
+        <input type="password" id="password_input" className="biginput" ref="password"/>
         <p className="existence_error" style={this.state.error_style}>メールアドレスかパスワードが間違っています。</p>
         <button onClick={this.signin.bind(this)} id="submit_domain" disabled={this.state.isdisabled}>
           続行する
