@@ -7,7 +7,7 @@ class WorkspacesController < ApplicationController
     if workspace.where(domain: workspace_params[:domain]).count.zero?
       render json: { success: true }
     else
-      render json: { success: false }
+      render json: { success: false, name: workspace.find_by(domain: workspace_params[:domain]).name }
     end
   end
   def create_with_user
