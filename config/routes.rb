@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   post '/workspaces/domain/check', to: 'workspaces#check_domain'
   post '/emails', to: 'email_verification#new'
   post '/emails/code/check', to: 'email_verification#check_code'
+  get '/signin', to: 'signin#new'
 end
