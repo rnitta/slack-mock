@@ -10,7 +10,7 @@ class WorkspacesController < ApplicationController
       render json: { success: false, name: workspace.find_by(domain: workspace_params[:domain]).name }
     end
   end
-  def create_with_user
+  def create
     email = Email.find_by(token: email_params[:token])
     workspace = Workspace.new(workspace_params)
     if workspace.save

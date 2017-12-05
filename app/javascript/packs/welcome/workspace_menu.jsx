@@ -7,7 +7,7 @@ export default class WSmenu extends React.Component {
         display: this.props.style
       }}>
       <a href="/signin" target="_blank">他のワークスペースにサインインする</a>
-      <a href="/workspaces" target="_blank">ワークスペースの作成</a>
+      <a href="/workspaces/new" target="_blank">ワークスペースの作成</a>
       </div>
     );
   }
