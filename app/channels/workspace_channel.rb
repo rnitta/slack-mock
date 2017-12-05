@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 class WorkspaceChannel < ApplicationCable::Channel
   def subscribed
-    # stream_from "some_channel"
+    stream_from current_user.token
   end
 
   def unsubscribed
