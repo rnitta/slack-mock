@@ -46,7 +46,7 @@ export default class WorkspaceDomain extends React.Component {
       }}>
         <h1>ワークスペースにサインインする</h1>
         <p>参加しているワークスペースのURLを入力してください</p>
-        <div className="domain_inputs">
+        <div className="domain_input">
           <span>/workspace/</span><input type="text" id="domain_input" className="biginput" ref="domain"/>
         </div>
         <p className="existence_error" style={this.state.error_style}>存在しないワークスペースです。</p>
