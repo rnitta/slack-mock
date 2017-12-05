@@ -27,6 +27,8 @@ class WorkspacesController < ApplicationController
       render json: { success: false }
     end
   end
+  def show
+  end
 
   private
 
