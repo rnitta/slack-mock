@@ -32,7 +32,7 @@ export default class EmailPassword extends React.Component {
     }).then((results) => {
       if (results.data.success) {
         // Parentのステートを更新
-        this.props.update_email_password({email: input_email, password: input_password})
+        this.props.update_email_password({email: input_email, password: input_password, token: results.data.token})
       } else {
         this.setState({isdisabled: false})
         this.setState({
