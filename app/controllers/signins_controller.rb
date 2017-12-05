@@ -1,8 +1,8 @@
 # frozen_string_literal: true
-class SigninController < ApplicationController
+class SigninsController < ApplicationController
   def new
   end
-  def issue_jwt
+  def create
     workspace = Workspace.find_by(domain: signin_params[:domain])
     user = User.where(workspace_id: workspace.id).find_by(email: signin_params[:email])
     if user&.authenticate(signin_params[:password])

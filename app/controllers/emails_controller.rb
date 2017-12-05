@@ -1,6 +1,6 @@
 # frozen_string_literal: true
-class EmailVerificationController < ApplicationController
-  def new
+class EmailsController < ApplicationController
+  def create
     # 同じメールアドレスの既存のレコードを削除
     Email.where(address: params[:email]).delete_all
     # メールアドレス確認用
