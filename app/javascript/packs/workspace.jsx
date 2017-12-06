@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom'
 import axios from 'axios'
 
 import App from './workspace/cable.js'
+import SideContainer from './workspace/side_container.jsx'
+import MainContainer from './workspace/main_container.jsx'
 
 class Parent extends React.Component {
   constructor(props) {
@@ -23,7 +25,12 @@ class Parent extends React.Component {
   }
   render() {
     return (
-      <div></div>
+      <div id="client_ui">
+        <div className="client_container">
+          <SideContainer />
+          <MainContainer />
+        </div>
+      </div>
     )
   }
 }
