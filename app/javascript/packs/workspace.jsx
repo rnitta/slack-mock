@@ -26,7 +26,7 @@ class Parent extends React.Component {
   render() {
     return (
       <div id="client_ui">
-        <div className="client_container">
+        <div id="client_container">
           <SideContainer />
           <MainContainer />
         </div>

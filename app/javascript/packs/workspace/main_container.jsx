@@ -9,6 +9,8 @@ export default class MainContainer extends React.Component {
   render() {
     return (
       <div id="main_container">
+        <div id="message_column"></div>
+        <div id="flex_column"><div>
       </div>
     );
   }
