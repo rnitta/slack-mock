@@ -1,20 +1,20 @@
 import React from 'react'
 import axios from 'axios'
 
+import CreateChannelPop from './popup/create_channel_pop.jsx'
 export default class SideContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      channels: {}
+      channels: {},
+      create_channel_pop: false
     }
     this.workspace_data()
   }
-  workspace_data(){
+  workspace_data() {
     axios.defaults.headers['X-CSRF-TOKEN'] = this.props.parentstate.csrf_token
-    axios.post('/workspaces/data', {
-        jwt: this.props.parentstate.jwt
-    }).then((results) => {
-      if(results.data.success){
+    axios.post('/workspaces/data', {jwt: this.props.parentstate.jwt}).then((results) => {
+      if (results.data.success) {
         delete(results.data.success)
         console.log(results.data)
         this.props.update_state(results.data)
@@ -24,16 +24,23 @@ export default class SideContainer extends React.Component {
     });
 
   }
+  pop_create_channel(){
+    this.setState({create_channel_pop: true})
+  }
   render() {
     return (
       <div id="side_container">
         <div id="team_menu"></div>
         <div id="starred_menu"></div>
         <div id="channel_menu">
-
+          <p className="menu_line">
+            <button id="channels_button">Channels</button>
+            <button id="create_channel_button" onClick={this.pop_create_channel.bind(this)}>+</button>
+          </p>
         </div>
         <div id="dm_menu"></div>
         <div id="bottom_menu"></div>
+        {(()=>{if(this.state.create_channel_pop){return <CreateChannelPop />}})()}
       </div>
     );
   }
