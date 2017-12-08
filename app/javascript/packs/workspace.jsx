@@ -9,7 +9,9 @@ import MainContainer from './workspace/main_container.jsx'
 class Parent extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+        csrf_token: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+    }
     App.room = App.cable.subscriptions.create({
       channel: "WorkspaceChannel"
     }, {
@@ -27,7 +29,7 @@ class Parent extends React.Component {
     return (
       <div id="client_ui">
         <div id="client_container">
-          <SideContainer />
+          <SideContainer parentstate={this.state}/>
           <MainContainer />
         </div>
       </div>
