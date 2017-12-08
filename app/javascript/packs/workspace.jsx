@@ -25,11 +25,14 @@ class Parent extends React.Component {
       }
     })
   }
+  update_state(obj){
+    this.setState(obj,()=>{console.log(this.state)})
+  }
   render() {
     return (
       <div id="client_ui">
         <div id="client_container">
-          <SideContainer parentstate={this.state}/>
+          <SideContainer parentstate={this.state} update_state={this.update_state} />
           <MainContainer />
         </div>
       </div>
