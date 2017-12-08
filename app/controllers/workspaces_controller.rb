@@ -29,6 +29,9 @@ class WorkspacesController < ApplicationController
   end
   def show
   end
+  def data
+    render json: { success: true }
+  end
 
   private
 
@@ -40,5 +43,11 @@ class WorkspacesController < ApplicationController
   end
   def email_params
     params.require(:email).permit(:token)
+  end
+  def current_user
+    decoded_token = JWT.decode(params[:jwt], Rails.application.secrets.secret_key_base, true, algorithm: 'HS256')
+    email = decoded_token[0]['email']
+    workspace_id = decoded_token[0]['workspace_id']
+    User.find_by(workspace_id: workspace_id, email: email)
   end
 end

@@ -12,14 +12,12 @@ export default class SideContainer extends React.Component {
   workspace_data(){
     axios.defaults.headers['X-CSRF-TOKEN'] = this.props.parentstate.csrf_token
     axios.post('/workspaces/data', {
-      signin: {
-        token: this.props.parentstate.jwt
-      }
+        jwt: this.props.parentstate.jwt
     }).then((results) => {
       if(results.data.success){
         delete(results.data.success)
         console.log(results.data)
-        this.props.update_state(obj)
+        this.props.update_state(results.data)
       }
     },).catch(() => {
       alert('エラー')

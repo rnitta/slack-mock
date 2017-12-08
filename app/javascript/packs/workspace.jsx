@@ -36,7 +36,7 @@ class Parent extends React.Component {
     return (
       <div id="client_ui">
         <div id="client_container">
-          <SideContainer parentstate={this.state} update_state={this.update_state}/>
+          <SideContainer parentstate={this.state} update_state={this.update_state.bind(this)}/>
           <MainContainer/>
         </div>
       </div>
