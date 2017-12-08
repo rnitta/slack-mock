@@ -10,11 +10,10 @@ export default class SideContainer extends React.Component {
     this.workspace_data()
   }
   workspace_data(){
-    let domain = location.pathname.split('/')[2]
     axios.defaults.headers['X-CSRF-TOKEN'] = this.props.parentstate.csrf_token
     axios.post('/workspaces/data', {
       signin: {
-        token: JSON.parse(localStorage.getItem(domain)).token
+        token: this.props.parentstate.jwt
       }
     }).then((results) => {
       if(results.data.success){

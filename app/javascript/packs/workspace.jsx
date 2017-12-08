@@ -9,8 +9,10 @@ import MainContainer from './workspace/main_container.jsx'
 class Parent extends React.Component {
   constructor(props) {
     super(props)
+    let domain = location.pathname.split('/')[2]
     this.state = {
-        csrf_token: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+      jwt: JSON.parse(localStorage.getItem(domain)).token,
+      csrf_token: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
     }
     App.room = App.cable.subscriptions.create({
       channel: "WorkspaceChannel"
@@ -25,15 +27,17 @@ class Parent extends React.Component {
       }
     })
   }
-  update_state(obj){
-    this.setState(obj,()=>{console.log(this.state)})
+  update_state(obj) {
+    this.setState(obj, () => {
+      console.log(this.state)
+    })
   }
   render() {
     return (
       <div id="client_ui">
         <div id="client_container">
-          <SideContainer parentstate={this.state} update_state={this.update_state} />
-          <MainContainer />
+          <SideContainer parentstate={this.state} update_state={this.update_state}/>
+          <MainContainer/>
         </div>
       </div>
     )
