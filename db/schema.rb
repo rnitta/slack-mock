@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171203061638) do
+ActiveRecord::Schema.define(version: 20171208050852) do
+
+  create_table "channels", force: :cascade do |t|
+    t.integer "workspace_id"
+    t.string "name"
+    t.boolean "public"
+    t.string "topic", default: "t", null: false
+    t.integer "count", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["workspace_id"], name: "index_channels_on_workspace_id"
+  end
 
   create_table "emails", force: :cascade do |t|
     t.string "address"
