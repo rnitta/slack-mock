@@ -27,6 +27,9 @@ export default class SideContainer extends React.Component {
   pop_create_channel(){
     this.setState({create_channel_pop: true})
   }
+  update_state(obj){
+    this.setState(obj)
+  }
   render() {
     return (
       <div id="side_container">
@@ -40,7 +43,7 @@ export default class SideContainer extends React.Component {
         </div>
         <div id="dm_menu"></div>
         <div id="bottom_menu"></div>
-        {(()=>{if(this.state.create_channel_pop){return <CreateChannelPop />}})()}
+        {(()=>{if(this.state.create_channel_pop){return <CreateChannelPop update_state={this.update_state.bind(this)} />}})()}
       </div>
     );
   }

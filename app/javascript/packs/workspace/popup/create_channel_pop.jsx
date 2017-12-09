@@ -5,13 +5,16 @@ export default class CreateChannelPop extends React.Component {
     super(props)
     this.state = {}
   }
+  hide(){
+    this.props.update_state({create_channel_pop: false})
+  }
   render() {
     return (
       <div id="create_channel_pop">
         <div className="pop_container">
           <h1>Create a channel</h1>
           <div id="right_up">
-            <button className="close_btn">×</button>
+            <button className="close_btn" onClick={this.hide.bind(this)}>×</button>
           </div>
           <form>
             <div className="input_group">
