@@ -11,6 +11,7 @@ class ChannelsController < ApplicationController
       channel.count = 1
       p channel
       channel.save!
+      ChannelUser.create(channel_id: channel.id, user_id: current_user.id)
       render json: { success: true }
     end
   end
