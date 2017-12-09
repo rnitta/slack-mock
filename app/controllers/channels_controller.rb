@@ -3,7 +3,16 @@ class ChannelsController < ApplicationController
   def create
     p current_user
     p channel_params
-    render json: { success: true }
+    if Channel.exists?(workspace_id: current_user.workspace_id, name: channel_params[:name])
+      render json: { success: false }
+    else
+      channel = Channel.new(channel_params)
+      channel.workspace_id = current_user.workspace_id
+      channel.count = 1
+      p channel
+      channel.save!
+      render json: { success: true }
+    end
   end
 
   private
