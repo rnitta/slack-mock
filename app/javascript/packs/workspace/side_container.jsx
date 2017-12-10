@@ -18,7 +18,6 @@ export default class SideContainer extends React.Component {
     axios.post('/workspaces/data', {jwt: this.props.parentstate.jwt}).then((results) => {
       if (results.data.success) {
         delete(results.data.success)
-        console.log(results.data)
         this.props.update_state(results.data)
       }
     },).catch(() => {

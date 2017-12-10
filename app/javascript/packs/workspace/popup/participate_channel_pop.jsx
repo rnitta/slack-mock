@@ -19,6 +19,7 @@ export default class ParticipateChannelPop extends React.Component {
             <button className="close_btn" onClick={this.hide.bind(this)}>×</button>
           </div>
           <form>
+            
           </form>
         </div>
       </div>

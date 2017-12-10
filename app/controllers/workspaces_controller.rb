@@ -30,7 +30,8 @@ class WorkspacesController < ApplicationController
   def show
   end
   def data
-    render json: { success: true }
+    @channels = Channel.where(workspace_id: current_user.workspace_id)
+    render 'workspaces/data', formats: 'json', handlers: 'jbuilder'
   end
 
   private
