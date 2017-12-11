@@ -9,7 +9,6 @@ class ChannelsController < ApplicationController
       channel = Channel.new(channel_params)
       channel.workspace_id = current_user.workspace_id
       channel.count = 1
-      p channel
       channel.save!
       ChannelUser.create(channel_id: channel.id, user_id: current_user.id)
       render json: { success: true }
