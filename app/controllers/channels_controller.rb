@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 class ChannelsController < ApplicationController
   def create
-    p current_user
-    p channel_params
     if Channel.exists?(workspace_id: current_user.workspace_id, name: channel_params[:name])
       render json: { success: false }
     else
@@ -12,6 +10,15 @@ class ChannelsController < ApplicationController
       channel.save!
       ChannelUser.create(channel_id: channel.id, user_id: current_user.id)
       render json: { success: true }
+    end
+  end
+  def join
+    channel = Channel.find_by(name: channel_params[:name])
+    if ChannelUser.exists?(channel_id: channel.id, user_id: current_user.id)
+      render json: { success: false }
+    else
+      ChannelUser.create(channel_id: channel.id, user_id: current_user.id)
+      channel_data_json
     end
   end
 

@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   post '/emails/code/check', to: 'emails#check_code'
   resource :signin, only: [:new, :create]
   resources :channels, only: [:create]
+  post '/channels/join', to: 'channels#join'
 end

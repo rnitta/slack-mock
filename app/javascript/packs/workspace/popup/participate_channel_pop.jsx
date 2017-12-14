@@ -29,7 +29,7 @@ export default class ParticipateChannelPop extends React.Component {
     }).then((results) => {
       if (results.data.success) {
         delete(results.data.success)
-        this.props.update_parent_state(results.data.success)
+        this.props.update_parent_state(results.data)
         this.hide()
       }
     },).catch(() => {
@@ -46,9 +46,9 @@ export default class ParticipateChannelPop extends React.Component {
           </div>
           <form>
             <div className="input_group">
-              {this.props.grandparentstate.available_channels.map((name) => {
+              {this.props.grandparentstate.available_channels.map((name,n) => {
                 return (
-                  <div className="check_channels">
+                  <div key={n} className="check_channels">
                     <input type="radio" value={name} name="channels" onChange={this.change_radio.bind(this)}/>
                     <span>{name}</span>
                   </div>
