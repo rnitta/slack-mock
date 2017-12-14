@@ -34,6 +34,9 @@ export default class SideContainer extends React.Component {
   update_state(obj){
     this.setState(obj)
   }
+  update_parent_state(obj){
+    this.props.update_state(obj)
+  }
   render() {
     return (
       <div id="side_container">
@@ -48,7 +51,7 @@ export default class SideContainer extends React.Component {
         <div id="dm_menu"></div>
         <div id="bottom_menu"></div>
           {(()=>{if(this.state.create_channel_pop){return <CreateChannelPop update_state={this.update_state.bind(this)} grandparentstate={this.props.parentstate} />}})()}
-          {(()=>{if(this.state.participate_channel_pop){return <ParticipateChannelPop update_state={this.update_state.bind(this)} grandparentstate={this.props.parentstate} />}})()}
+          {(()=>{if(this.state.participate_channel_pop){return <ParticipateChannelPop update_state={this.update_state.bind(this)} update_parent_state={this.update_parent_state.bind(this)} grandparentstate={this.props.parentstate} />}})()}
       </div>
     );
   }
