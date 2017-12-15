@@ -35,6 +35,8 @@ export default class CreateChannelPop extends React.Component {
       }
     }).then((results) => {
       if (results.data.success) {
+        delete(results.data.success)
+        this.props.update_parent_state(results.data)
         this.hide()
       } else {
         alert('すでに存在するチャンネルです')

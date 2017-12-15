@@ -9,7 +9,7 @@ class ChannelsController < ApplicationController
       channel.count = 1
       channel.save!
       ChannelUser.create(channel_id: channel.id, user_id: current_user.id)
-      render json: { success: true }
+      channel_data_json
     end
   end
   def join

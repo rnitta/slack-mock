@@ -65,7 +65,7 @@ export default class SideContainer extends React.Component {
         </div>
         <div id="dm_menu"></div>
         <div id="bottom_menu"></div>
-          {(()=>{if(this.state.create_channel_pop){return <CreateChannelPop update_state={this.update_state.bind(this)} grandparentstate={this.props.parentstate} />}})()}
+          {(()=>{if(this.state.create_channel_pop){return <CreateChannelPop update_state={this.update_state.bind(this)} update_parent_state={this.update_parent_state.bind(this)} grandparentstate={this.props.parentstate} />}})()}
           {(()=>{if(this.state.participate_channel_pop){return <ParticipateChannelPop update_state={this.update_state.bind(this)} update_parent_state={this.update_parent_state.bind(this)} grandparentstate={this.props.parentstate} />}})()}
       </div>
     );
