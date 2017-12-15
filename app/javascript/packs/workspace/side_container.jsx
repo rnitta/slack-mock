@@ -26,30 +26,37 @@ export default class SideContainer extends React.Component {
     });
 
   }
-  pop_create_channel(){
+  pop_create_channel() {
     this.setState({create_channel_pop: true})
   }
-  pop_participate_channel(){
+  pop_participate_channel() {
     this.setState({participate_channel_pop: true})
   }
-  update_state(obj){
+  update_state(obj) {
     this.setState(obj)
   }
-  update_parent_state(obj){
+  update_parent_state(obj) {
     this.props.update_state(obj)
   }
-  channel_select(e){
+  channel_select(e) {
     let selected_channel = e.target.getAttribute('data-channel-name')
     this.props.switch_channel(selected_channel)
-    let state = {channel_style: {}}
-    state.channel_style[selected_channel] = {backgroundColor: "#4C9689", color: "#fff"}
+    let state = {
+      channel_style: {}
+    }
+    state.channel_style[selected_channel] = {
+      backgroundColor: "#4C9689",
+      color: "#fff"
+    }
     this.setState(state)
   }
   render() {
-    var joined_channels =[]
-    if(!!this.props.parentstate.joined_channels){
-      this.props.parentstate.joined_channels.map((channel,i)=>{
-        joined_channels.push(<p className="channel_line" key={i} data-channel-name={channel} style={this.state.channel_style[channel]} onClick={this.channel_select.bind(this)}># {channel}</p>)
+    var joined_channels = []
+    if (!!this.props.parentstate.joined_channels) {
+      this.props.parentstate.joined_channels.map((channel, i) => {
+        joined_channels.push(
+          <p className="channel_line" key={i} data-channel-name={channel} style={this.state.channel_style[channel]} onClick={this.channel_select.bind(this)}># {channel}</p>
+        )
       })
     }
     return (
@@ -65,8 +72,16 @@ export default class SideContainer extends React.Component {
         </div>
         <div id="dm_menu"></div>
         <div id="bottom_menu"></div>
-          {(()=>{if(this.state.create_channel_pop){return <CreateChannelPop update_state={this.update_state.bind(this)} update_parent_state={this.update_parent_state.bind(this)} grandparentstate={this.props.parentstate} />}})()}
-          {(()=>{if(this.state.participate_channel_pop){return <ParticipateChannelPop update_state={this.update_state.bind(this)} update_parent_state={this.update_parent_state.bind(this)} grandparentstate={this.props.parentstate} />}})()}
+        {(() => {
+          if (this.state.create_channel_pop) {
+            return <CreateChannelPop update_state={this.update_state.bind(this)} update_parent_state={this.update_parent_state.bind(this)} grandparentstate={this.props.parentstate}/>
+          }
+        })()}
+        {(() => {
+          if (this.state.participate_channel_pop) {
+            return <ParticipateChannelPop update_state={this.update_state.bind(this)} update_parent_state={this.update_parent_state.bind(this)} grandparentstate={this.props.parentstate}/>
+          }
+        })()}
       </div>
     );
   }

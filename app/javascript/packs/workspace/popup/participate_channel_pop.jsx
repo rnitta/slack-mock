@@ -13,12 +13,9 @@ export default class ParticipateChannelPop extends React.Component {
     this.props.update_state({participate_channel_pop: false})
   }
   change_radio(e) {
-    this.setState({
-      isdisabled: false,
-      selected_channel: e.target.value
-    })
+    this.setState({isdisabled: false, selected_channel: e.target.value})
   }
-  submit_join(e){
+  submit_join(e) {
     e.preventDefault()
     axios.defaults.headers['X-CSRF-TOKEN'] = this.props.grandparentstate.csrf_token
     axios.post('/channels/join', {
@@ -46,7 +43,7 @@ export default class ParticipateChannelPop extends React.Component {
           </div>
           <form>
             <div className="input_group">
-              {this.props.grandparentstate.available_channels.map((name,n) => {
+              {this.props.grandparentstate.available_channels.map((name, n) => {
                 return (
                   <div key={n} className="check_channels">
                     <input type="radio" value={name} name="channels" onChange={this.change_radio.bind(this)}/>
@@ -54,6 +51,11 @@ export default class ParticipateChannelPop extends React.Component {
                   </div>
                 )
               })
+}
+              {(() => {
+                if (this.props.grandparentstate.available_channels == [])
+                  return <p>no available channel</p>
+              })()
 }
             </div>
             <div className="input_group">
