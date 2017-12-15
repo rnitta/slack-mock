@@ -12,7 +12,8 @@ class Parent extends React.Component {
     let domain = location.pathname.split('/')[2]
     this.state = {
       jwt: JSON.parse(localStorage.getItem(domain)).token,
-      csrf_token: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+      csrf_token: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+      selected_channel:""
     }
     App.room = App.cable.subscriptions.create({
       channel: "WorkspaceChannel"
@@ -32,11 +33,16 @@ class Parent extends React.Component {
       console.log(this.state)
     })
   }
+  switch_channel(channel){
+    this.setState({selected_channel: channel},()=>{
+      // switch
+    })
+  }
   render() {
     return (
       <div id="client_ui">
         <div id="client_container">
-          <SideContainer parentstate={this.state} update_state={this.update_state.bind(this)}/>
+          <SideContainer parentstate={this.state} update_state={this.update_state.bind(this)} switch_channel={this.switch_channel.bind(this)}/>
           <MainContainer/>
         </div>
       </div>

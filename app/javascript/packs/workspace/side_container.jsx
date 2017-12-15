@@ -9,7 +9,8 @@ export default class SideContainer extends React.Component {
     this.state = {
       channels: {},
       create_channel_pop: false,
-      create_channel_pop: false
+      create_channel_pop: false,
+      channel_style: {}
     }
     this.workspace_data()
   }
@@ -37,7 +38,20 @@ export default class SideContainer extends React.Component {
   update_parent_state(obj){
     this.props.update_state(obj)
   }
+  channel_select(e){
+    let selected_channel = e.target.getAttribute('data-channel-name')
+    this.props.switch_channel(selected_channel)
+    let state = {channel_style: {}}
+    state.channel_style[selected_channel] = {backgroundColor: "#4C9689", color: "#fff"}
+    this.setState(state)
+  }
   render() {
+    var joined_channels =[]
+    if(!!this.props.parentstate.joined_channels){
+      this.props.parentstate.joined_channels.map((channel,i)=>{
+        joined_channels.push(<p className="channel_line" key={i} data-channel-name={channel} style={this.state.channel_style[channel]} onClick={this.channel_select.bind(this)}># {channel}</p>)
+      })
+    }
     return (
       <div id="side_container">
         <div id="team_menu"></div>
@@ -47,6 +61,7 @@ export default class SideContainer extends React.Component {
             <button id="channels_button" onClick={this.pop_participate_channel.bind(this)}>Channels</button>
             <button id="create_channel_button" onClick={this.pop_create_channel.bind(this)}>+</button>
           </p>
+          {joined_channels}
         </div>
         <div id="dm_menu"></div>
         <div id="bottom_menu"></div>
