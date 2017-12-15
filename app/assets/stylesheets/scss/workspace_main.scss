@@ -1,0 +1,86 @@
+#header_column {
+  width: 100%;
+  top: 0;
+  display: flex;
+  padding: 2px 0 0;
+  height: 50px;
+  border-bottom: 1px solid #ececec;
+
+  .header_left {
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+
+    .channel_name_span {
+      font-size: 16px;
+      display: block;
+    }
+
+    .channel_header_info {
+      margin-top: -6px;
+
+      .star_btn {
+        font-size: 14px;
+        background-color: transparent;
+        border: none;
+        padding: 0;
+        color: #ababab;
+      }
+
+      .star_btn::after {
+        margin: 0 5px;
+        content: "|";
+      }
+
+      .members_count_btn {
+        font-size: 14px;
+        background-color: transparent;
+        border: none;
+        padding: 0;
+        color: #ababab;
+      }
+
+      .members_count_btn::after {
+        margin: 0 5px;
+        content: "|";
+      }
+
+      .edit_topic_btn {
+        font-size: 14px;
+        background-color: transparent;
+        border: none;
+        padding: 0;
+        color: #ababab;
+      }
+    }
+  }
+}
+#message_column{
+  overflow: scroll;
+}
+#fixed_column {
+  bottom: 0;
+  .message_form {
+    display: flex;
+    flex-direction: row;
+
+    .editable_div {
+      flex: 1;
+      padding: 9px;
+      margin: 5px;
+      border: 1px solid #ececec;
+    }
+
+    .submit_btn {
+      background: #2ea664;
+      color: #fff;
+      border: none;
+      width: 80px;
+      text-align: center;
+      margin: 5px;
+      border-radius: 10px;
+      font-weight: 900;
+      font-size: 16px;
+    }
+  }
+}

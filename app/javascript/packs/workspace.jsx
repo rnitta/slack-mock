@@ -19,7 +19,6 @@ class Parent extends React.Component {
       channel: "WorkspaceChannel"
     }, {
       connected: function() {
-        alert('done')
       }, //接続時
       disconnected: function() {}, //切断時
       received: function(data) { //受信時
@@ -43,7 +42,7 @@ class Parent extends React.Component {
       <div id="client_ui">
         <div id="client_container">
           <SideContainer parentstate={this.state} update_state={this.update_state.bind(this)} switch_channel={this.switch_channel.bind(this)}/>
-          <MainContainer/>
+          <MainContainer parentstate={this.state} update_state={this.update_state.bind(this)}/>
         </div>
       </div>
     )
