@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   resource :signin, only: [:new, :create]
   resources :channels, only: [:create]
   post '/channels/join', to: 'channels#join'
+  post '/channels/star', to: 'channels#star'
 end

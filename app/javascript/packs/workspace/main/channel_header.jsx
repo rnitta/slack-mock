@@ -4,20 +4,25 @@ import axios from 'axios'
 export default class ChannelHeader extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-    }
+    this.state = {}
   }
-  click_star(e){
+  click_star(e) {
     var stared
-    if(e.target.innerText == "☆"){
-    e.target.innerText="★"
-    stared = true
-  }else{
-    e.target.innerText="☆"
-    stared = false
+    if (e.target.innerText == "☆") {
+      e.target.innerText = "★"
+      stared = true
+    } else {
+      e.target.innerText = "☆"
+      stared = false
     }
     axios.defaults.headers['X-CSRF-TOKEN'] = this.props.grandparentstate.csrf_token
-    axios.post('/channels/star', {jwt: this.props.grandparentstate.jwt, star: stared}).then((results) => {
+    axios.post('/channels/star', {
+      jwt: this.props.grandparentstate.jwt,
+      star: stared,
+      channel: {
+        name: this.props.grandparentstate.selected_channel.name
+      }
+    }).then((results) => {
       if (results.data.success) {
         delete(results.data.success)
         this.props.update_state(results.data)
@@ -28,10 +33,10 @@ export default class ChannelHeader extends React.Component {
   }
   render() {
     var topic
-    if(!!this.props.grandparentstate.selected_channel.topic){
-         topic = "トピック: "+this.props.grandparentstate.selected_channel.topic
-    }else {
-       topic = "トピックを追加"
+    if (!!this.props.grandparentstate.selected_channel.topic) {
+      topic = "トピック: " + this.props.grandparentstate.selected_channel.topic
+    } else {
+      topic = "トピックを追加"
     }
     return (
       <div id="channel_header_container">
