@@ -26,6 +26,7 @@ class ChannelsController < ApplicationController
     channel = Channel.find_by(name: channel_params[:name])
     ChannelUser.find_by(channel_id: channel.id, user_id: current_user.id)
                .update_attribute(:stared, params[:star] ? true : false)
+    channel_data_json
   end
 
   private

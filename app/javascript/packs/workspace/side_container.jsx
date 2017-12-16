@@ -52,9 +52,18 @@ export default class SideContainer extends React.Component {
   }
   render() {
     var joined_channels = []
-    if (!!this.props.parentstate.joined_channels) {
+    if (!!this.props.parentstate.joined_channels && this.props.parentstate.joined_channels.length > 0 ) {
       this.props.parentstate.joined_channels.map((channel, i) => {
         joined_channels.push(
+          <p className="channel_line" key={i} data-channel-name={channel.name} style={this.state.channel_style[channel.name]} onClick={this.channel_select.bind(this)}># {channel.name}</p>
+        )
+      })
+    }
+    var stared_channels = []
+    if(!!this.props.parentstate.stared_channels && this.props.parentstate.stared_channels.length > 0){
+      stared_channels.push(<p key="stared" className="menu_line">Stared</p>)
+      this.props.parentstate.stared_channels.map((channel,i)=>{
+        stared_channels.push(
           <p className="channel_line" key={i} data-channel-name={channel.name} style={this.state.channel_style[channel.name]} onClick={this.channel_select.bind(this)}># {channel.name}</p>
         )
       })
@@ -62,7 +71,9 @@ export default class SideContainer extends React.Component {
     return (
       <div id="side_container">
         <div id="team_menu"></div>
-        <div id="starred_menu"></div>
+        <div id="starred_menu">
+          {stared_channels}
+        </div>
         <div id="channel_menu">
           <p className="menu_line">
             <button id="channels_button" onClick={this.pop_participate_channel.bind(this)}>Channels</button>

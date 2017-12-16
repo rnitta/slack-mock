@@ -25,7 +25,7 @@ export default class ChannelHeader extends React.Component {
     }).then((results) => {
       if (results.data.success) {
         delete(results.data.success)
-        this.props.update_state(results.data)
+        this.props.update_parent_state(results.data)
       }
     },).catch(() => {
       alert('エラー')
