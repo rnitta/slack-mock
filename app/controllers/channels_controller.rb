@@ -18,6 +18,7 @@ class ChannelsController < ApplicationController
       render json: { success: false }
     else
       ChannelUser.create(channel_id: channel.id, user_id: current_user.id)
+      channel.update_attribute(:count, channel.count + 1)
       channel_data_json
     end
   end

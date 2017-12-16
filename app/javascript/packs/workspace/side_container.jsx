@@ -55,7 +55,7 @@ export default class SideContainer extends React.Component {
     if (!!this.props.parentstate.joined_channels) {
       this.props.parentstate.joined_channels.map((channel, i) => {
         joined_channels.push(
-          <p className="channel_line" key={i} data-channel-name={channel} style={this.state.channel_style[channel]} onClick={this.channel_select.bind(this)}># {channel}</p>
+          <p className="channel_line" key={i} data-channel-name={channel.name} style={this.state.channel_style[channel.name]} onClick={this.channel_select.bind(this)}># {channel.name}</p>
         )
       })
     }

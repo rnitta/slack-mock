@@ -2,9 +2,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   def channel_data_json
-    @channels = Channel.where(workspace_id: current_user.workspace_id, public: true).pluck(:name)
-    @joined_channels = current_user.channels.pluck(:name)
-    @available_channels = @channels - @joined_channels
+    @channels = Channel.where(workspace_id: current_user.workspace_id, public: true).select('name', 'topic', 'count')
+    @joined_channels = current_user.channels.select('name', 'topic', 'count')
+    @available_channels = @channels.pluck(:name) - @joined_channels.pluck(:name)
     render 'workspaces/data', formats: 'json', handlers: 'jbuilder'
   end
   def current_user
