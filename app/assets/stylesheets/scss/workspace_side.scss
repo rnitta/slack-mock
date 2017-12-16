@@ -16,12 +16,17 @@
   background: #4d394b;
   overflow-y: scroll;
 
+  #starred_menu p:last-child{
+    margin-bottom: 20px;
+  }
+
   .menu_line {
     margin: 0;
     padding: 0 12px 0 15px;
     height: 26px;
     display: flex;
     align-items: center;
+    color: #978c96;
   }
   .channel_line{
     margin: 0;
