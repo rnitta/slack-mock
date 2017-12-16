@@ -18,7 +18,7 @@ export default class ChannelHeader extends React.Component {
     return (
       <div id="channel_header_container">
         <div className="header_left">
-          <span className="channel_name_span"># {this.props.grandparentstate.selected_channel}</span>
+          <span className="channel_name_span"># {this.props.grandparentstate.selected_channel.name}</span>
           <div className="channel_header_info">
             <button className="star_btn" onClick={this.click_star.bind(this)}>☆</button>
             <button className="members_count_btn">n</button>

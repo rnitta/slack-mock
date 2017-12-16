@@ -13,13 +13,12 @@ class Parent extends React.Component {
     this.state = {
       jwt: JSON.parse(localStorage.getItem(domain)).token,
       csrf_token: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-      selected_channel:""
+      selected_channel: ""
     }
     App.room = App.cable.subscriptions.create({
       channel: "WorkspaceChannel"
     }, {
-      connected: function() {
-      }, //接続時
+      connected: function() {}, //接続時
       disconnected: function() {}, //切断時
       received: function(data) { //受信時
       },
@@ -32,8 +31,14 @@ class Parent extends React.Component {
       console.log(this.state)
     })
   }
-  switch_channel(channel){
-    this.setState({selected_channel: channel},()=>{
+  switch_channel(channel) {
+    var selected_channel = this.state.joined_channels.filter(function(item, i) {
+      if (item.name == channel)
+        return true
+    })
+    this.setState({
+      selected_channel: selected_channel[0]
+    }, () => {
       // switch
     })
   }
