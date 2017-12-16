@@ -25,8 +25,8 @@ ActiveRecord::Schema.define(version: 20171216034145) do
   create_table "channels", force: :cascade do |t|
     t.integer "workspace_id"
     t.string "name"
-    t.boolean "public"
-    t.string "topic", default: "t", null: false
+    t.boolean "public", default: true, null: false
+    t.string "topic"
     t.integer "count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
