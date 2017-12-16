@@ -8,11 +8,23 @@ export default class ChannelHeader extends React.Component {
     }
   }
   click_star(e){
+    var stared
     if(e.target.innerText == "☆"){
     e.target.innerText="★"
+    stared = true
   }else{
     e.target.innerText="☆"
+    stared = false
     }
+    axios.defaults.headers['X-CSRF-TOKEN'] = this.props.grandparentstate.csrf_token
+    axios.post('/channels/star', {jwt: this.props.grandparentstate.jwt, star: stared}).then((results) => {
+      if (results.data.success) {
+        delete(results.data.success)
+        this.props.update_state(results.data)
+      }
+    },).catch(() => {
+      alert('エラー')
+    });
   }
   render() {
     var topic

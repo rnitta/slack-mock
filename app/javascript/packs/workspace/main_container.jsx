@@ -8,15 +8,18 @@ export default class MainContainer extends React.Component {
     this.state = {
     }
   }
+  update_parent_state(obj) {
+    this.props.update_state(obj)
+  }
   render() {
     if(!!this.props.parentstate.selected_channel){
     return (
       <div id="main_container">
         <div id="header_column">
-          <ChannelHeader grandparentstate={this.props.parentstate}/>
+          <ChannelHeader update_parent_state={this.update_parent_state.bind(this)} grandparentstate={this.props.parentstate}/>
         </div>
         <div id="message_column">
-          
+
         </div>
         <div id="fixed_column">
           <MessageForm grandparentstate={this.props.parentstate}/>
