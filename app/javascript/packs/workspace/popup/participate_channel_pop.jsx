@@ -43,11 +43,11 @@ export default class ParticipateChannelPop extends React.Component {
           </div>
           <form>
             <div className="input_group">
-              {this.props.grandparentstate.available_channels.map((name, n) => {
+              {this.props.grandparentstate.available_channels.map((channel, n) => {
                 return (
                   <div key={n} className="check_channels">
-                    <input type="radio" value={name} name="channels" onChange={this.change_radio.bind(this)}/>
-                    <span>{name}</span>
+                    <input type="radio" value={channel} name="channels" onChange={this.change_radio.bind(this)}/>
+                    <span>{channel}</span>
                   </div>
                 )
               })
