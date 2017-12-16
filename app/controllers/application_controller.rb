@@ -5,6 +5,11 @@ class ApplicationController < ActionController::Base
     @channels = Channel.where(workspace_id: current_user.workspace_id, public: true).select('name', 'topic', 'count')
     @joined_channels = current_user.channels.select('name', 'topic', 'count')
     @available_channels = @channels.pluck(:name) - @joined_channels.pluck(:name)
+    @stared_channels = []
+    channelusers = ChannelUser.where(user_id: current_user.id, stared: true)
+    channelusers.each do |channeluser|
+      @stared_channels.push(channeluser.channel.slice(:name, :topic, :count))
+    end
     render 'workspaces/data', formats: 'json', handlers: 'jbuilder'
   end
   def current_user
