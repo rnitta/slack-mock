@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
     @stared_channels = []
     channelusers = ChannelUser.where(user_id: current_user.id, stared: true)
     channelusers.each do |channeluser|
-      @stared_channels.push(channeluser.channel.slice(:name, :topic, :count))
+      @stared_channels.push(channeluser.channel.name)
     end
     render 'workspaces/data', formats: 'json', handlers: 'jbuilder'
   end

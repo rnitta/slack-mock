@@ -64,7 +64,7 @@ export default class SideContainer extends React.Component {
       stared_channels.push(<p key="stared" className="menu_line">Stared</p>)
       this.props.parentstate.stared_channels.map((channel,i)=>{
         stared_channels.push(
-          <p className="channel_line" key={i} data-channel-name={channel.name} style={this.state.channel_style[channel.name]} onClick={this.channel_select.bind(this)}># {channel.name}</p>
+          <p className="channel_line" key={i} data-channel-name={channel} style={this.state.channel_style[channel]} onClick={this.channel_select.bind(this)}># {channel}</p>
         )
       })
     }
