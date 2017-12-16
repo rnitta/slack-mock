@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171216034145) do
+ActiveRecord::Schema.define(version: 20171216112242) do
 
   create_table "channel_users", force: :cascade do |t|
     t.integer "user_id"
     t.integer "channel_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "stared", default: false
+    t.boolean "starred", default: false
     t.index ["channel_id"], name: "index_channel_users_on_channel_id"
     t.index ["user_id"], name: "index_channel_users_on_user_id"
   end

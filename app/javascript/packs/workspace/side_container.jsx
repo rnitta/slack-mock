@@ -59,11 +59,11 @@ export default class SideContainer extends React.Component {
         )
       })
     }
-    var stared_channels = []
-    if(!!this.props.parentstate.stared_channels && this.props.parentstate.stared_channels.length > 0){
-      stared_channels.push(<p key="stared" className="menu_line">Stared</p>)
-      this.props.parentstate.stared_channels.map((channel,i)=>{
-        stared_channels.push(
+    var starred_channels = []
+    if(!!this.props.parentstate.starred_channels && this.props.parentstate.starred_channels.length > 0){
+      starred_channels.push(<p key="starred" className="menu_line">starred</p>)
+      this.props.parentstate.starred_channels.map((channel,i)=>{
+        starred_channels.push(
           <p className="channel_line" key={i} data-channel-name={channel} style={this.state.channel_style[channel]} onClick={this.channel_select.bind(this)}># {channel}</p>
         )
       })
@@ -72,7 +72,7 @@ export default class SideContainer extends React.Component {
       <div id="side_container">
         <div id="team_menu"></div>
         <div id="starred_menu">
-          {stared_channels}
+          {starred_channels}
         </div>
         <div id="channel_menu">
           <p className="menu_line">

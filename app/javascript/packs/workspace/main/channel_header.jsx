@@ -5,7 +5,7 @@ export default class ChannelHeader extends React.Component {
   constructor(props) {
     super(props)
     this.state = {}
-    if(this.props.grandparentstate.stared_channels.indexOf(this.props.grandparentstate.selected_channel.name) >= 0){
+    if(this.props.grandparentstate.starred_channels.indexOf(this.props.grandparentstate.selected_channel.name) >= 0){
       this.state.star =  "★"
     }else{
       this.state.star =  "☆"
