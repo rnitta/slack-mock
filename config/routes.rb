@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   resources :channels, only: [:create]
   post '/channels/join', to: 'channels#join'
   post '/channels/star', to: 'channels#star'
+  post '/channels/topic', to: 'channels#topic'
 end

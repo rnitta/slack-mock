@@ -15,13 +15,14 @@ export default class TopicEditPop extends React.Component {
     axios.post('/channels/topic', {
       jwt: this.props.rootstate.jwt,
       channel: {
+        name: this.props.rootstate.selected_channel.name,
         topic: this.refs.topic_edit_form.innerText.replace(/\r?\n/g, "")
       }
     }).then((results) => {
       if (results.data.success) {
         delete(results.data.success)
         this.props.update_root_state(results.data)
-        this.hide_pop()
+        this.hide_pop("submitted")
       }
     },).catch(() => {
       alert('エラー')
@@ -29,7 +30,7 @@ export default class TopicEditPop extends React.Component {
 
   }
   hide_pop(e) {
-    if (e.target.id == "topic_edit_outer") {
+    if (e === "submitted" || e.target.id == "topic_edit_outer") {
       this.props.hide_pop()
     }
   }

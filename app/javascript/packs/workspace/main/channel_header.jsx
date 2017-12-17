@@ -39,7 +39,7 @@ export default class ChannelHeader extends React.Component {
     }).then((results) => {
       if (results.data.success) {
         delete(results.data.success)
-        this.props.update_parent_state(results.data)
+        this.update_root_state(results.data)
       }
     },).catch(() => {
       alert('エラー')
@@ -51,6 +51,9 @@ export default class ChannelHeader extends React.Component {
   hide_pop(){
     this.setState({pop_topic_edit: false})
   }
+  update_root_state(obj){
+    this.props.update_parent_state(obj)
+  }
   render() {
     var topic
     if (!!this.props.grandparentstate.selected_channel.topic) {
@@ -60,7 +63,7 @@ export default class ChannelHeader extends React.Component {
     }
     var channel_edit_pop
     if(this.state.pop_topic_edit){
-      channel_edit_pop = <TopicEditPop hide_pop={this.hide_pop.bind(this)} rootstate={this.props.grandparentstate} update_root_state={this.props.update_parent_state}/>
+      channel_edit_pop = <TopicEditPop hide_pop={this.hide_pop.bind(this)} rootstate={this.props.grandparentstate} update_root_state={this.update_root_state.bind(this)}/>
     }
     return (
       <div id="channel_header_container">

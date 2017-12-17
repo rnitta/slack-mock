@@ -28,6 +28,7 @@ class Parent extends React.Component {
   }
   update_state(obj) {
     this.setState(obj, () => {
+      this.switch_channel(this.state.selected_channel.name)
       console.log(this.state)
     })
   }
