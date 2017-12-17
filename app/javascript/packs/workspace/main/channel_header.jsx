@@ -60,7 +60,7 @@ export default class ChannelHeader extends React.Component {
     }
     var channel_edit_pop
     if(this.state.pop_topic_edit){
-      channel_edit_pop = <TopicEditPop hide_pop={this.hide_pop.bind(this)}/>
+      channel_edit_pop = <TopicEditPop hide_pop={this.hide_pop.bind(this)} rootstate={this.props.grandparentstate} update_root_state={this.props.update_parent_state}/>
     }
     return (
       <div id="channel_header_container">
