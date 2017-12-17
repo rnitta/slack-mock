@@ -11,6 +11,13 @@ export default class ChannelHeader extends React.Component {
       this.state.star =  "☆"
     }
   }
+  componentWillReceiveProps(obj){
+    if(obj.grandparentstate.starred_channels.indexOf(obj.grandparentstate.selected_channel.name) >= 0){
+      this.state.star =  "★"
+    }else{
+      this.state.star =  "☆"
+    }
+  }
   click_star(e) {
     if (this.state.star == "☆") {
       this.setState({star: "★"}, this.post_star)
