@@ -1,4 +1,6 @@
-#create_channel_pop, #participate_channel_pop {
+#create_channel_pop,
+#participate_channel_pop,
+#topic_edit_outer {
   position: absolute;
   top: 0;
   left: 0;
@@ -67,4 +69,21 @@
     width: 640px;
     max-width: 100%;
   }
+}
+
+#topic_edit_outer {
+  background-color: rgba(#000000, 0.7)!important;
+}
+
+#topic_edit_inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  height: 200px;
+  width: 400px;
+  border-radius: 8px;
+  background-color: #ffffff;
 }

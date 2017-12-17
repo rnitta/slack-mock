@@ -1,10 +1,13 @@
 import React from 'react'
 import axios from 'axios'
 
+import TopicEditPop from '../popup/topic_edit_pop.jsx'
 export default class ChannelHeader extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      pop_topic_edit: false
+    }
     if(this.props.grandparentstate.starred_channels.indexOf(this.props.grandparentstate.selected_channel.name) >= 0){
       this.state.star =  "★"
     }else{
@@ -42,12 +45,22 @@ export default class ChannelHeader extends React.Component {
       alert('エラー')
     });
   }
+  pop_topic_edit(){
+    this.setState({pop_topic_edit: true})
+  }
+  hide_pop(){
+    this.setState({pop_topic_edit: false})
+  }
   render() {
     var topic
     if (!!this.props.grandparentstate.selected_channel.topic) {
       topic = "トピック: " + this.props.grandparentstate.selected_channel.topic
     } else {
       topic = "トピックを追加"
+    }
+    var channel_edit_pop
+    if(this.state.pop_topic_edit){
+      channel_edit_pop = <TopicEditPop hide_pop={this.hide_pop.bind(this)}/>
     }
     return (
       <div id="channel_header_container">
@@ -56,9 +69,10 @@ export default class ChannelHeader extends React.Component {
           <div className="channel_header_info">
             <button className="star_btn" onClick={this.click_star.bind(this)}>{this.state.star}</button>
             <button className="members_count_btn">{this.props.grandparentstate.selected_channel.count}人</button>
-            <button className="edit_topic_btn">{topic}</button>
+            <button className="edit_topic_btn" onClick={this.pop_topic_edit.bind(this)}>{topic}</button>
           </div>
         </div>
+        {channel_edit_pop}
       </div>
     );
   }
