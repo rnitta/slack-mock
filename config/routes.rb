@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :workspaces, only: [:new, :create, :show]
   post '/workspaces/domain/check', to: 'workspaces#check_domain'
   post '/workspaces/data', to: 'workspaces#data'
+  post '/workspaces/invite', to: 'workspaces#invite'
   resource :email, only: [:create]
   post '/emails/code/check', to: 'emails#check_code'
   resource :signin, only: [:new, :create]
@@ -11,5 +12,4 @@ Rails.application.routes.draw do
   post '/channels/join', to: 'channels#join'
   post '/channels/star', to: 'channels#star'
   post '/channels/topic', to: 'channels#topic'
-  post '/users/invite', to: 'users#invite'
 end

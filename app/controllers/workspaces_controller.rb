@@ -32,6 +32,8 @@ class WorkspacesController < ApplicationController
   def data
     channel_data_json
   end
+  def invite
+  end
 
   private
 
