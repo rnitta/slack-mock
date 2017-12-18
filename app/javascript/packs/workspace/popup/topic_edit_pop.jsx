@@ -22,7 +22,7 @@ export default class TopicEditPop extends React.Component {
       if (results.data.success) {
         delete(results.data.success)
         this.props.update_root_state(results.data)
-        this.hide_pop("submitted")
+        this.props.hide_pop()
       }
     },).catch(() => {
       alert('エラー')
@@ -30,7 +30,7 @@ export default class TopicEditPop extends React.Component {
 
   }
   hide_pop(e) {
-    if (e === "submitted" || e.target.id == "topic_edit_outer") {
+    if (e.target.id == "topic_edit_outer") {
       this.props.hide_pop()
     }
   }
