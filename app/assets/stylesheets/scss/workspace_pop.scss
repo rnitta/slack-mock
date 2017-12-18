@@ -1,7 +1,7 @@
 #create_channel_pop,
 #participate_channel_pop,
-#topic_edit_outer,
-#team_menu_outer {
+#team_menu_outer,
+#topic_edit_outer {
   position: absolute;
   top: 0;
   left: 0;
@@ -72,7 +72,8 @@
   }
 }
 
-#topic_edit_outer, #team_menu_outer {
+#team_menu_outer,
+#topic_edit_outer {
   background-color: rgba(#000000, 0.7)!important;
 }
 
@@ -87,6 +88,7 @@
   width: 400px;
   border-radius: 8px;
   background-color: #ffffff;
+
   button {
     background-color: #00b696;
     color: #fff;
@@ -104,7 +106,8 @@
     background-color: #b3b3b3!important;
     color: #fff;
   }
-  .topic_edit_form{
+
+  .topic_edit_form {
     border: 3px solid #dedede;
     overflow: scroll;
     margin: 30px;
@@ -112,14 +115,34 @@
     height: 1rem;
   }
 }
-#team_menu_inner{
-    position: absolute;
-    top: 60px;
-    left: 30px;
-    bottom: 30px;
-    width: 300px;
-    background-color: #ffffff;
-    overflow: scroll;
-    border-radius: 10px;
 
+#team_menu_inner {
+  position: absolute;
+  top: 60px;
+  left: 30px;
+  bottom: 30px;
+  width: 300px;
+  background-color: #ffffff;
+  overflow: scroll;
+  border-radius: 10px;
+
+  p {
+    margin: 0;
+  }
+
+  #user_menu_header {
+    text-align: center;
+    border-bottom: 1px solid #d7d7d7;
+    margin-bottom: 20px;
+    padding: 5px;
+    font-weight: 900;
+  }
+
+  #workspace_menu_header {
+    text-align: center;
+    border-bottom: 1px solid #d7d7d7;
+    margin-bottom: 20px;
+    padding: 5px;
+    font-weight: 900;
+  }
 }
