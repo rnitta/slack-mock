@@ -11,6 +11,9 @@ export default class TeamMenuPop extends React.Component {
       this.props.update_state({team_menu_pop: false})
     }
   }
+  pop_invite_form(){
+    this.props.update_state({team_menu_pop: false, invite_form_pop: true})
+  }
   render() {
     return (
       <div id="team_menu_pop">
@@ -26,6 +29,9 @@ export default class TeamMenuPop extends React.Component {
                 <p id="current_team_name">{this.props.grandparentstate.workspace_name}</p>
                 <p id="current_team_domain">({this.props.grandparentstate.domain})</p>
               </div>
+              <ul>
+                <li><button id="invite_pop_btn" onClick={this.pop_invite_form.bind(this)} >Invite People</button></li>
+              </ul>
             </div>
           </div>
         </div>

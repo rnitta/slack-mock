@@ -1,7 +1,8 @@
 #create_channel_pop,
 #participate_channel_pop,
 #team_menu_outer,
-#topic_edit_outer {
+#topic_edit_outer,
+#invite_form_pop {
   position: absolute;
   top: 0;
   left: 0;
@@ -147,5 +148,17 @@
     margin-bottom: 20px;
     padding: 5px;
     font-weight: 900;
+  }
+  ul{
+    li{
+      button#invite_pop_btn{
+        font-size: 18px;
+        box-shadow: none!important;
+        border: none;
+        text-align: left;
+        padding: 5px;
+
+      }
+    }
   }
 }

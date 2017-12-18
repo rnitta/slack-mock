@@ -4,6 +4,7 @@ import axios from 'axios'
 import CreateChannelPop from './popup/create_channel_pop.jsx'
 import ParticipateChannelPop from './popup/participate_channel_pop.jsx'
 import TeamMenuPop from './popup/team_menu_pop.jsx'
+import InviteFormPop from './popup/invite_form_pop.jsx'
 export default class SideContainer extends React.Component {
   constructor(props) {
     super(props)
@@ -73,6 +74,10 @@ export default class SideContainer extends React.Component {
     if(this.state.team_menu_pop){
       team_menu_pop = <TeamMenuPop update_parent_state={this.update_parent_state.bind(this)} grandparentstate={this.props.parentstate} update_state={this.update_state.bind(this)}/>
     }
+    var invite_form_pop = []
+    if (this.state.invite_form_pop){
+      invite_form_pop = <InviteFormPop update_parent_state={this.update_parent_state.bind(this)} grandparentstate={this.props.parentstate} update_state={this.update_state.bind(this)}/>
+    }
     return (
       <div id="side_container">
         <div id="team_menu" onClick={()=>{this.setState({team_menu_pop: true})}}>
@@ -102,6 +107,7 @@ export default class SideContainer extends React.Component {
             return <ParticipateChannelPop update_state={this.update_state.bind(this)} update_parent_state={this.update_parent_state.bind(this)} grandparentstate={this.props.parentstate}/>
           }
         })()}
+        {invite_form_pop}
       </div>
     );
   }
