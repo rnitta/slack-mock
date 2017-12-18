@@ -3,14 +3,15 @@ import axios from 'axios'
 
 import CreateChannelPop from './popup/create_channel_pop.jsx'
 import ParticipateChannelPop from './popup/participate_channel_pop.jsx'
+import TeamMenuPop from './popup/team_menu_pop.jsx'
 export default class SideContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       channels: {},
       create_channel_pop: false,
-      create_channel_pop: false,
-      channel_style: {}
+      channel_style: {},
+      team_menu_pop: false
     }
     this.workspace_data()
   }
@@ -68,11 +69,16 @@ export default class SideContainer extends React.Component {
         )
       })
     }
+    var team_menu_pop = []
+    if(this.state.team_menu_pop){
+      team_menu_pop = <TeamMenuPop update_parent_state={this.update_parent_state.bind(this)} grandparentstate={this.props.parentstate}/>
+    }
     return (
       <div id="side_container">
-        <div id="team_menu">
+        <div id="team_menu" onClick={()=>{this.setState({team_menu_pop: true})}}>
           <p id="side_team_name">{this.props.parentstate.workspace_name}</p>
           <p id="side_user_name"><i className="active_user_mark">●</i>{this.props.parentstate.display_name}</p>
+          {team_menu_pop}
         </div>
         <div id="starred_menu">
           {starred_channels}
