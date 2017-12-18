@@ -13,7 +13,8 @@ class Parent extends React.Component {
     this.state = {
       jwt: JSON.parse(localStorage.getItem(domain)).token,
       csrf_token: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-      selected_channel: ""
+      selected_channel: "",
+      domain: domain
     }
     App.room = App.cable.subscriptions.create({
       channel: "WorkspaceChannel"

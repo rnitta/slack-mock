@@ -70,7 +70,10 @@ export default class SideContainer extends React.Component {
     }
     return (
       <div id="side_container">
-        <div id="team_menu"></div>
+        <div id="team_menu">
+          <p id="side_team_name">{this.props.parentstate.workspace_name}</p>
+          <p id="side_user_name"><i className="active_user_mark">●</i>{this.props.parentstate.display_name}</p>
+        </div>
         <div id="starred_menu">
           {starred_channels}
         </div>
