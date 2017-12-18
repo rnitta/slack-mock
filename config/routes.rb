@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   post '/channels/join', to: 'channels#join'
   post '/channels/star', to: 'channels#star'
   post '/channels/topic', to: 'channels#topic'
+  post '/users/invite', to: 'users#invite'
 end
