@@ -71,15 +71,15 @@ export default class SideContainer extends React.Component {
     }
     var team_menu_pop = []
     if(this.state.team_menu_pop){
-      team_menu_pop = <TeamMenuPop update_parent_state={this.update_parent_state.bind(this)} grandparentstate={this.props.parentstate}/>
+      team_menu_pop = <TeamMenuPop update_parent_state={this.update_parent_state.bind(this)} grandparentstate={this.props.parentstate} update_state={this.update_state.bind(this)}/>
     }
     return (
       <div id="side_container">
         <div id="team_menu" onClick={()=>{this.setState({team_menu_pop: true})}}>
           <p id="side_team_name">{this.props.parentstate.workspace_name}</p>
           <p id="side_user_name"><i className="active_user_mark">●</i>{this.props.parentstate.display_name}</p>
-          {team_menu_pop}
         </div>
+        {team_menu_pop}
         <div id="starred_menu">
           {starred_channels}
         </div>
