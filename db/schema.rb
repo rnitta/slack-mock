@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171216112242) do
+ActiveRecord::Schema.define(version: 20171218101846) do
 
   create_table "channel_users", force: :cascade do |t|
     t.integer "user_id"
@@ -40,6 +40,17 @@ ActiveRecord::Schema.define(version: 20171216112242) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["address"], name: "index_emails_on_address", unique: true
+  end
+
+  create_table "invitations", force: :cascade do |t|
+    t.string "token"
+    t.string "email"
+    t.integer "user_id"
+    t.integer "workspace_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_invitations_on_user_id"
+    t.index ["workspace_id"], name: "index_invitations_on_workspace_id"
   end
 
   create_table "users", force: :cascade do |t|

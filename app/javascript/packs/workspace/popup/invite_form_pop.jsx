@@ -21,16 +21,16 @@ export default class InviteFormPop extends React.Component {
       return false
     }
     axios.defaults.headers['X-CSRF-TOKEN'] = this.props.grandparentstate.csrf_token
-    axios.post('/users/invite', {
+    axios.post('/workspaces/invite', {
       jwt: this.props.grandparentstate.jwt,
-      email: email
+      invitation: {email: email}
     }).then((results) => {
       if (results.data.success) {
-        this.hide_pop()
         alert('done!')
-      }else{
         this.hide_pop()
+      }else{
         alert('すでに登録されたメールアドレスです')
+        this.hide_pop()
       }
     },).catch(() => {
       alert('エラー')

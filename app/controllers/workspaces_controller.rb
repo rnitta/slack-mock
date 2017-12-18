@@ -33,6 +33,24 @@ class WorkspacesController < ApplicationController
     channel_data_json
   end
   def invite
+    p invitation_params
+    p current_user
+    if User.exists?(workspace_id: current_user.workspace_id, email: invitation_params[:email])
+      render json: { success: false }
+    else
+      payload = { email: invitation_params[:email],
+                  user_id: current_user.id,
+                  workspace_id: current_user.workspace_id }
+      token = JWT.encode(payload, Rails.application.secrets.secret_key_base, 'HS256')
+      invitation = Invitation.new(invitation_params)
+      invitation.user_id = payload[:user_id]
+      invitation.workspace_id = payload[:workspace_id]
+      invitation.token = token
+      if invitation.save
+        InvitationMailer.send_mail(payload[:email], token, current_user.workspace.name).deliver_later
+        render json: { success: true }
+      end
+    end
   end
 
   private
@@ -45,5 +63,8 @@ class WorkspacesController < ApplicationController
   end
   def email_params
     params.require(:email).permit(:token)
+  end
+  def invitation_params
+    params.require(:invitation).permit(:email)
   end
 end
