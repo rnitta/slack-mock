@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 
 export default class DisplayInfos extends React.Component {
   constructor(props) {
@@ -7,7 +8,7 @@ export default class DisplayInfos extends React.Component {
   }
   componentDidMount() {
     axios.defaults.headers['X-CSRF-TOKEN'] = this.props.state.csrf_token
-    axios.post('/invitation/data', {jwt: this.props.state.jwt}).then((results) => {
+    axios.post('/invitations/data', {jwt: this.props.state.jwt}).then((results) => {
       if (results.data.success) {
         delete(results.data.success)
         this.props.update_state(results.data)
