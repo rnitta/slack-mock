@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 import DisplayInfos from './invited/display_infos.jsx'
+import InputInfos from './invited/input_infos.jsx'
 class Parent extends React.Component {
   constructor(props) {
     super(props)
@@ -21,9 +22,14 @@ class Parent extends React.Component {
     if(this.state.display_infos){
       display_infos = <DisplayInfos state={this.state} update_state={(obj)=>{this.setState(obj)}}/>
     }
+    var input_infos = []
+    if(this.state.input_infos){
+      input_infos = <InputInfos state={this.state} update_state={(obj)=>{this.setState(obj)}}/>
+    }
     return (
       <div id="registration_with_invitation">
         {display_infos}
+        {input_infos}
       </div>
     )
   }

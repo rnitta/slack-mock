@@ -4,7 +4,9 @@ import axios from 'axios'
 export default class DisplayInfos extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      isdisabled: true
+    }
   }
   componentDidMount() {
     axios.defaults.headers['X-CSRF-TOKEN'] = this.props.state.csrf_token
@@ -12,10 +14,14 @@ export default class DisplayInfos extends React.Component {
       if (results.data.success) {
         delete(results.data.success)
         this.props.update_state(results.data)
+        this.setState({isdisabled: false})
       }
     },).catch(() => {
       alert('エラー')
     })
+  }
+  go_next(){
+    this.props.update_state({display_infos: false, input_infos: true})
   }
   render() {
     return (
@@ -27,6 +33,7 @@ export default class DisplayInfos extends React.Component {
           <li>ドメイン:  {this.props.state.domain}</li>
           <li>メールアドレス:  {this.props.state.email}</li>
         </ul>
+        <button className="large_btn" disabled={this.state.true} onClick={this.go_next.bind(this)}>次へ進む</button>
       </div>
     );
   }
