@@ -5,7 +5,10 @@ export default class InputInfos extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      isdisabled: true
+      isdisabled: true,
+      user_name: '',
+      display_name: '',
+      password: ''
     }
   }
   oninput() {
@@ -22,8 +25,36 @@ export default class InputInfos extends React.Component {
     } else {
       this.setState({isdisabled: true})
     }
+    if(!display_name){
+      display_name = user_name
+    }
+    this.setState({user_name: user_name, display_name: display_name, password: password})
   }
-  submit() {}
+  submit() {
+    axios.defaults.headers['X-CSRF-TOKEN'] = this.props.state.csrf_token
+    axios.post('/users/invite', {
+      jwt: this.props.state.jwt,
+      user: {
+        user_name: this.state.user_name,
+        display_name: this.state.display_name,
+        password: this.state.password,
+        password_confirmation: this.state.password
+      }
+    }).then((results) => {
+      if (results.data.success) {
+        let data = {
+          token: results.data.token,
+          workspace_name: this.props.state.workspace_name
+        }
+        localStorage.setItem(this.props.state.domain, JSON.stringify(data))
+        location.href = "/workspaces/"+this.props.state.domain
+      }else {
+        alert('既存のユーザー名です')
+      }
+    },).catch(() => {
+      alert('エラー')
+    })
+  }
   render() {
     return (
       <div id="input_infos">

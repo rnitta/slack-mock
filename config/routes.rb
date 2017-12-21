@@ -13,5 +13,6 @@ Rails.application.routes.draw do
   post '/channels/star', to: 'channels#star'
   post '/channels/topic', to: 'channels#topic'
   get '/users/invite/:id', to: 'users#invited', constraints: { id: %r([^\/]+) }
+  post '/users/invite', to: 'users#create_with_invitation'
   post '/invitations/data', to: 'invitations#data'
 end

@@ -33,8 +33,6 @@ class WorkspacesController < ApplicationController
     channel_data_json
   end
   def invite
-    p invitation_params
-    p current_user
     if User.exists?(workspace_id: current_user.workspace_id, email: invitation_params[:email])
       render json: { success: false }
     else
