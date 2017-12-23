@@ -54,7 +54,7 @@ export default class SideContainer extends React.Component {
   }
   render() {
     var joined_channels = []
-    if (!!this.props.parentstate.joined_channels && this.props.parentstate.joined_channels.length > 0 ) {
+    if (!!this.props.parentstate.joined_channels && this.props.parentstate.joined_channels.length > 0) {
       this.props.parentstate.joined_channels.map((channel, i) => {
         joined_channels.push(
           <p className="channel_line" key={i} data-channel-name={channel.name} style={this.state.channel_style[channel.name]} onClick={this.channel_select.bind(this)}># {channel.name}</p>
@@ -62,27 +62,44 @@ export default class SideContainer extends React.Component {
       })
     }
     var starred_channels = []
-    if(!!this.props.parentstate.starred_channels && this.props.parentstate.starred_channels.length > 0){
-      starred_channels.push(<p key="starred" className="menu_line">starred</p>)
-      this.props.parentstate.starred_channels.map((channel,i)=>{
+    if (!!this.props.parentstate.starred_channels && this.props.parentstate.starred_channels.length > 0) {
+      starred_channels.push(
+        <p key="starred" className="menu_line">Starred</p>
+      )
+      this.props.parentstate.starred_channels.map((channel, i) => {
         starred_channels.push(
           <p className="channel_line" key={i} data-channel-name={channel} style={this.state.channel_style[channel]} onClick={this.channel_select.bind(this)}># {channel}</p>
         )
       })
     }
+    var users = []
+    if (!!this.props.parentstate.users) {
+      users.push(
+        <p key="dm" className="menu_line">Direct Messages</p>
+      )
+      this.props.parentstate.users.map((user, i) => {
+        users.push(
+          <p className="user_line" key={i} data-user-name={user.user_name}>
+            <i className="active_user_mark">●</i>{user.display_name}</p>
+        )
+      })
+    }
     var team_menu_pop = []
-    if(this.state.team_menu_pop){
+    if (this.state.team_menu_pop) {
       team_menu_pop = <TeamMenuPop update_parent_state={this.update_parent_state.bind(this)} grandparentstate={this.props.parentstate} update_state={this.update_state.bind(this)}/>
     }
     var invite_form_pop = []
-    if (this.state.invite_form_pop){
+    if (this.state.invite_form_pop) {
       invite_form_pop = <InviteFormPop update_parent_state={this.update_parent_state.bind(this)} grandparentstate={this.props.parentstate} update_state={this.update_state.bind(this)}/>
     }
     return (
       <div id="side_container">
-        <div id="team_menu" onClick={()=>{this.setState({team_menu_pop: true})}}>
+        <div id="team_menu" onClick={() => {
+          this.setState({team_menu_pop: true})
+        }}>
           <p id="side_team_name">{this.props.parentstate.workspace_name}</p>
-          <p id="side_user_name"><i className="active_user_mark">●</i>{this.props.parentstate.display_name}</p>
+          <p id="side_user_name">
+            <i className="active_user_mark">●</i>{this.props.parentstate.display_name}</p>
         </div>
         {team_menu_pop}
         <div id="starred_menu">
@@ -95,7 +112,9 @@ export default class SideContainer extends React.Component {
           </p>
           {joined_channels}
         </div>
-        <div id="dm_menu"></div>
+        <div id="dm_menu">
+          {users}
+        </div>
         <div id="bottom_menu"></div>
         {(() => {
           if (this.state.create_channel_pop) {

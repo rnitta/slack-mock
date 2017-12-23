@@ -48,7 +48,7 @@
     }
   }
 
-  #starred_menu p:last-child {
+  #starred_menu p:last-child, #channel_menu p:last-child {
     margin-bottom: 20px;
   }
 
@@ -61,14 +61,14 @@
     color: #978c96;
   }
 
-  .channel_line {
+  .channel_line, .user_line{
     margin: 0;
     padding: 0 12px 0 20px;
     height: 26px;
     color: #978c96;
   }
 
-  .channel_line:hover {
+  .channel_line:hover, .user_line:hover {
     background-color: #2e222d;
   }
 
