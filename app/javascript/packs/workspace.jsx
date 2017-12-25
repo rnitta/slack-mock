@@ -25,7 +25,7 @@ class Parent extends React.Component {
       connected: function() {}, //接続時
       disconnected: function() {}, //切断時
       received: function(data) { //受信時
-        self.setState({users: data.users}})
+        self.setState({users: data.users})
       },
       send_message: function(message) { //送信時
       }

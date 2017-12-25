@@ -78,10 +78,18 @@ export default class SideContainer extends React.Component {
         <p key="dm" className="menu_line">Direct Messages</p>
       )
       this.props.parentstate.users.map((user, i) => {
-        users.push(
-          <p className="user_line" key={i} data-user-name={user.user_name}>
-            <i className="active_user_mark">●</i>{user.display_name}</p>
-        )
+        if(user.status == 1){
+          users.push(
+            <p className="user_line" key={i} data-user-name={user.user_name}>
+              <i className="active_user_mark">●</i>{user.display_name}</p>
+          )
+        }else{
+          users.push(
+            <p className="user_line" key={i} data-user-name={user.user_name}>
+              <i className="inactive_user_mark">○</i>{user.display_name}</p>
+          )
+        }
+
       })
     }
     var team_menu_pop = []
