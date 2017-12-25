@@ -16,12 +16,16 @@ class Parent extends React.Component {
       selected_channel: "",
       domain: domain
     }
-    App.room = App.cable.subscriptions.create({
-      channel: "WorkspaceChannel"
+  }
+  componentDidMount(){
+    let self = this
+    App.appearance = App.cable.subscriptions.create({
+      channel: "AppearanceChannel"
     }, {
       connected: function() {}, //接続時
       disconnected: function() {}, //切断時
       received: function(data) { //受信時
+        self.setState({users: data.users}})
       },
       send_message: function(message) { //送信時
       }
