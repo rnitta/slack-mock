@@ -29,15 +29,9 @@ class Parent extends React.Component {
         let user_arr = data.users.filter((user)=>{
           if(user.user_name == self.state.user_name) return true
         })
-        console.log(user_arr)
         if (user_arr[0] && user_arr[0].status == 0){
           this.perform('activate_user')
         }
-      },
-      send_message: function(message) { //送信時
-      },
-      send_status: ()=>{
-
       }
     })
   }
