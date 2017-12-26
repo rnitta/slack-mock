@@ -12,6 +12,7 @@ export default class SideContainer extends React.Component {
       channels: {},
       create_channel_pop: false,
       channel_style: {},
+      user_style: {},
       team_menu_pop: false
     }
     this.workspace_data()
@@ -44,9 +45,23 @@ export default class SideContainer extends React.Component {
     let selected_channel = e.target.getAttribute('data-channel-name')
     this.props.switch_channel(selected_channel)
     let state = {
-      channel_style: {}
+      channel_style: {},
+      user_style: {}
     }
     state.channel_style[selected_channel] = {
+      backgroundColor: "#4C9689",
+      color: "#fff"
+    }
+    this.setState(state)
+  }
+  user_select(e) {
+    let selected_user = e.target.getAttribute('data-user-name')
+    this.props.switch_dm(selected_user)
+    let state = {
+      channel_style: {},
+      user_style: {}
+    }
+    state.user_style[selected_user] = {
       backgroundColor: "#4C9689",
       color: "#fff"
     }
@@ -80,12 +95,12 @@ export default class SideContainer extends React.Component {
       this.props.parentstate.users.map((user, i) => {
         if(user.status == 1){
           users.push(
-            <p className="user_line" key={i} data-user-name={user.user_name}>
+            <p className="user_line" key={i} data-user-name={user.user_name} style={this.state.user_style[user.user_name]} onClick={this.user_select.bind(this)}>
               <i className="active_user_mark">●</i>{user.display_name}</p>
           )
         }else{
           users.push(
-            <p className="user_line" key={i} data-user-name={user.user_name}>
+            <p className="user_line" key={i} data-user-name={user.user_name} style={this.state.user_style[user.user_name]} onClick={this.user_select.bind(this)}>
               <i className="inactive_user_mark">○</i>{user.display_name}</p>
           )
         }

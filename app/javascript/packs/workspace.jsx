@@ -14,6 +14,7 @@ class Parent extends React.Component {
       jwt: JSON.parse(localStorage.getItem(domain)).token,
       csrf_token: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
       selected_channel: "",
+      selected_user: "",
       domain: domain
     }
   }
@@ -49,16 +50,31 @@ class Parent extends React.Component {
         return true
     })
     this.setState({
+      selected: "channel",
       selected_channel: selected_channel[0]
     }, () => {
       // switch
+      console.log(this.state)
+    })
+  }
+  switch_dm(user){
+    var selected_user = this.state.users.filter(function(item, i) {
+      if (user == item.user_name)
+        return true
+    })
+    this.setState({
+      selected: "user",
+      selected_user: selected_user[0]
+    }, () => {
+      // switch
+      console.log(this.state)
     })
   }
   render() {
     return (
       <div id="client_ui">
         <div id="client_container">
-          <SideContainer parentstate={this.state} update_state={this.update_state.bind(this)} switch_channel={this.switch_channel.bind(this)}/>
+          <SideContainer parentstate={this.state} update_state={this.update_state.bind(this)} switch_channel={this.switch_channel.bind(this)} switch_dm={this.switch_dm.bind(this)}/>
           <MainContainer parentstate={this.state} update_state={this.update_state.bind(this)}/>
         </div>
       </div>
