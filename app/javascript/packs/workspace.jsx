@@ -26,13 +26,24 @@ class Parent extends React.Component {
       disconnected: function() {}, //切断時
       received: function(data) { //受信時
         self.setState({users: data.users})
+        let user_arr = data.users.filter((user)=>{
+          if(user.user_name == self.state.user_name) return true
+        })
+        console.log(user_arr)
+        if (user_arr[0] && user_arr[0].status == 0){
+          this.perform('activate_user')
+        }
       },
       send_message: function(message) { //送信時
+      },
+      send_status: ()=>{
+
       }
     })
   }
   update_state(obj) {
     this.setState(obj, () => {
+      console.log(this.state)
       if(!!this.state.selected_channel){
       this.switch_channel(this.state.selected_channel.name)
       }

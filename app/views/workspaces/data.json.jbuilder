@@ -1,5 +1,6 @@
 json.workspace_name @workspace_name
-json.display_name @display_name
+json.display_name @current_user.display_name
+json.user_name @current_user.user_name
 json.channels @channels
 json.joined_channels @joined_channels
 json.available_channels @available_channels
