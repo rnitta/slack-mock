@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171218101846) do
+ActiveRecord::Schema.define(version: 20171226171259) do
 
   create_table "channel_users", force: :cascade do |t|
     t.integer "user_id"
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 20171218101846) do
     t.string "email"
     t.string "user_name"
     t.string "display_name"
-    t.integer "status"
+    t.integer "status", default: 0
     t.integer "invited_by"
     t.integer "role"
     t.string "phone"
