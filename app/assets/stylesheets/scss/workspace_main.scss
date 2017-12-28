@@ -16,6 +16,11 @@
       display: block;
     }
 
+    .user_name_span {
+      font-size: 16px;
+      display: block;
+    }
+
     .channel_header_info {
       margin-top: -9px;
 
@@ -53,13 +58,48 @@
         color: #ababab;
       }
     }
+
+    .dm_header_info {
+      margin-top: -9px;
+      color: #ababab;
+
+      .user_status {
+        display: inline;
+      }
+
+      .user_status::after {
+        margin: 0 5px;
+        content: "|";
+      }
+
+      .user_name {
+        font-size: 14px;
+      }
+
+      .active_user_mark {
+        color: #38978D;
+        font-size: 10px;
+        font-style: normal;
+        margin-right: 10px;
+      }
+
+      .inactive_user_mark {
+        color: #dbdbdb;
+        font-size: 10px;
+        font-style: normal;
+        margin-right: 10px;
+      }
+    }
   }
 }
-#message_column{
+
+#message_column {
   overflow: scroll;
 }
+
 #fixed_column {
   bottom: 0;
+
   .message_form {
     display: flex;
     flex-direction: row;
