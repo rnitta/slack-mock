@@ -7,4 +7,8 @@ class WorkspaceChannel < ApplicationCable::Channel
   def unsubscribed
     # Any cleanup needed when channel is unsubscribed
   end
+
+  def broadcast_message(data)
+    p data
+  end
 end

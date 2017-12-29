@@ -18,7 +18,7 @@ class Parent extends React.Component {
       domain: domain
     }
   }
-  componentDidMount(){
+  componentDidMount() {
     let self = this
     App.appearance = App.cable.subscriptions.create({
       channel: "AppearanceChannel"
@@ -27,20 +27,28 @@ class Parent extends React.Component {
       disconnected: function() {}, //切断時
       received: function(data) { //受信時
         self.setState({users: data.users})
-        let user_arr = data.users.filter((user)=>{
-          if(user.user_name == self.state.user_name) return true
+        let user_arr = data.users.filter((user) => {
+          if (user.user_name == self.state.user_name)
+            return true
         })
-        if (user_arr[0] && user_arr[0].status == 0){
+        if (user_arr[0] && user_arr[0].status == 0) {
           this.perform('activate_user')
         }
+      }
+    })
+    window.chat = App.cable.subscriptions.create({
+      channel: "WorkspaceChannel"
+    }, {
+      received: (data) => { //受信時
+
       }
     })
   }
   update_state(obj) {
     this.setState(obj, () => {
       console.log(this.state)
-      if(!!this.state.selected_channel){
-      this.switch_channel(this.state.selected_channel.name)
+      if (!!this.state.selected_channel) {
+        this.switch_channel(this.state.selected_channel.name)
       }
     })
   }
@@ -57,7 +65,7 @@ class Parent extends React.Component {
       console.log(this.state)
     })
   }
-  switch_dm(user){
+  switch_dm(user) {
     var selected_user = this.state.users.filter(function(item, i) {
       if (user == item.user_name)
         return true
