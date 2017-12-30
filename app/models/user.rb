@@ -11,5 +11,5 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 6 }
   has_many :channel_users
   has_many :channels, through: :channel_users
-  has_many :messages, foreign_key: :sender_id
+  has_many :messages
 end
