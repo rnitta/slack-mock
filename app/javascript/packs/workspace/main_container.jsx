@@ -25,7 +25,7 @@ export default class MainContainer extends React.Component {
       name: name
     }).then((results) => {
       if (results.data.success) {
-        this.setState({messages: results.data.messages}, ()=>{console.log(this.state)})
+        this.setState({messages: results.data.messages}, ()=>{this.scroll_to_bottom()})
       }
     },).catch(() => {
       alert('エラー')
@@ -38,6 +38,10 @@ export default class MainContainer extends React.Component {
     var messages_arr = this.state.messages
     messages_arr.push(message)
     this.setState({messages: messages_arr})
+  }
+  scroll_to_bottom(){
+    var obj = this.refs.message_column
+    obj.scrollTop = obj.scrollHeight
   }
   render() {
     var message_list = []
@@ -58,7 +62,7 @@ export default class MainContainer extends React.Component {
           <div id="header_column">
             {header}
           </div>
-          <div id="message_column">
+          <div id="message_column" ref="message_column">
             {message_list}
           </div>
           <div id="fixed_column">

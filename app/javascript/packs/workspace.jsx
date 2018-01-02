@@ -63,7 +63,6 @@ class Parent extends React.Component {
     }, () => {
       // switch
       this.refs.main.get_message_list()
-      console.log(this.state)
     })
   }
   switch_dm(user) {
@@ -77,7 +76,6 @@ class Parent extends React.Component {
     }, () => {
       // switch
       this.refs.main.get_message_list()
-      console.log(this.state)
     })
   }
   render() {
