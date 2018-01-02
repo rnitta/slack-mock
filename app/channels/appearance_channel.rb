@@ -23,7 +23,7 @@ class AppearanceChannel < ApplicationCable::Channel
   def broadcast_appearance
     ActionCable.server.broadcast(
       "appearance_of_#{current_user.workspace.domain}",
-      users: User.where(workspace_id: current_user.workspace_id).select('display_name', 'user_name', 'status').as_json
+      users: User.where(workspace_id: current_user.workspace_id).select(:id, :display_name, :user_name, :status).as_json
     )
   end
 end

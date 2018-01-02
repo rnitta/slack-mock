@@ -71,7 +71,7 @@ class WorkspacesController < ApplicationController
                                receiver_id: channel.id)
     end
     render json: { success: true,
-                   messages: messages.select(:sender_id, :receiver_type, :receiver_id, :message, :created_at) }
+                   messages: messages.select(:id, :sender_id, :receiver_type, :receiver_id, :message, :created_at) }
   end
 
   private

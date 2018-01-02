@@ -4,6 +4,7 @@ import axios from 'axios'
 import ChannelHeader from './main/channel_header.jsx'
 import DmHeader from './main/dm_header.jsx'
 import MessageForm from './main/message_form.jsx'
+import Message from './main/message.jsx'
 export default class MainContainer extends React.Component {
   constructor(props) {
     super(props)
@@ -37,7 +38,7 @@ export default class MainContainer extends React.Component {
     var message_list = []
     if (!!this.state.messages) {
       this.state.messages.map((message, i)=>{
-        message_list.push(<div key={i}>{message.message}</div>)
+        message_list.push(<Message key={message.id} message={message} rootstate={this.props.parentstate}/>)
       })
     }
     if (!!this.props.parentstate.selected) {

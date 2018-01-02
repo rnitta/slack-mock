@@ -1,0 +1,41 @@
+.message_container{
+  display: flex;
+  flex-direction: row;
+  padding-left: 10px;
+  .icon_mock{
+    margin: 5px;
+    background-color: #8b8b8b;
+    color: #ffffff;
+    border-radius: 5px;
+    width: 40px;
+    height: 40px;
+    font-size: 30px;
+    text-align: center;
+  }
+  .message_content{
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    .message_header{
+      display: flex;
+      flex-direction: row;
+      margin-top: 5px;
+      .message_display_name{
+        font-weight: 900;
+        font-size: 14px;
+      }
+      .message_datetime{
+        margin-left: 20px;
+        font-size: 12px;
+        color: #959595;
+      }
+      .message_text{
+        font-weight: 100;
+        font-size: 16px;
+      }
+    }
+  }
+}
+.message_container:hover{
+  background-color: #f1f3f4;
+}
