@@ -50,6 +50,29 @@ class WorkspacesController < ApplicationController
       end
     end
   end
+  def messages
+    if params[:type] == 'user'
+      type = 1
+      speaking_to = User.find_by(workspace_id: current_user.workspace_id, user_name: params[:name])
+      messages = Message.where(workspace_id: current_user.workspace_id,
+                               receiver_type: type,
+                               receiver_id: speaking_to.id,
+                               sender_id: current_user.id).or(
+                                 Message.where(workspace_id: current_user.workspace_id,
+                                               receiver_type: type,
+                                               receiver_id: current_user.id,
+                                               sender_id: speaking_to.id)
+                               )
+    elsif params[:type] == 'channel'
+      type = 2
+      channel = Channel.find_by(workspace_id: current_user.workspace_id, name: params[:name])
+      messages = Message.where(workspace_id: current_user.workspace_id,
+                               receiver_type: type,
+                               receiver_id: channel.id)
+    end
+    render json: { success: true,
+                   messages: messages.select(:sender_id, :receiver_type, :receiver_id, :message, :created_at) }
+  end
 
   private
 

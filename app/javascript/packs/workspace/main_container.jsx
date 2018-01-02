@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 
 import ChannelHeader from './main/channel_header.jsx'
 import DmHeader from './main/dm_header.jsx'
@@ -8,18 +9,13 @@ export default class MainContainer extends React.Component {
     super(props)
     this.state = {}
   }
-  componentDidMount() {
-    this.get_message_list()
-  }
-  componentWillReceiveProps() {
-    this.get_message_list()
-  }
   get_message_list() {
-    let type = this.props.parentstate.selected
+    var type = this.props.parentstate.selected
+    var name = ""
     if (type == "user") {
-      let name = this.props.parentstate.selected_user.name
+      name = this.props.parentstate.selected_user.user_name
     } else if (type == "channel") {
-      let name = this.props.parentstate.selected_channel.name
+      name = this.props.parentstate.selected_channel.name
     }
     axios.defaults.headers['X-CSRF-TOKEN'] = this.props.parentstate.csrf_token
     axios.post('/workspaces/messages', {
@@ -39,7 +35,11 @@ export default class MainContainer extends React.Component {
   }
   render() {
     var message_list = []
-    if (!!this.props.parentstate.messages) {}
+    if (!!this.state.messages) {
+      this.state.messages.map((message, i)=>{
+        message_list.push(<div key={i}>{message.message}</div>)
+      })
+    }
     if (!!this.props.parentstate.selected) {
       var header = []
       if (this.props.parentstate.selected == "channel") {

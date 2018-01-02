@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
     @joined_channels = current_user.channels.select('name', 'topic', 'count')
     @available_channels = @channels.pluck(:name) - @joined_channels.pluck(:name)
     @starred_channels = []
-    @users = User.where(workspace_id: current_user.workspace_id).select('display_name', 'user_name', 'status')
+    @users = User.where(workspace_id: current_user.workspace_id).select('id', 'display_name', 'user_name', 'status')
     channelusers = ChannelUser.where(user_id: current_user.id, starred: true)
     channelusers.each do |channeluser|
       @starred_channels.push(channeluser.channel.name)

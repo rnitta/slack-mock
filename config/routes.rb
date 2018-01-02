@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   post '/workspaces/domain/check', to: 'workspaces#check_domain'
   post '/workspaces/data', to: 'workspaces#data'
   post '/workspaces/invite', to: 'workspaces#invite'
+  post 'workspaces/messages', to: 'workspaces#messages'
   resource :email, only: [:create]
   post '/emails/code/check', to: 'emails#check_code'
   resource :signin, only: [:new, :create]
