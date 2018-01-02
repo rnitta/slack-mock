@@ -34,6 +34,11 @@ export default class MainContainer extends React.Component {
   update_parent_state(obj) {
     this.props.update_state(obj)
   }
+  receive_messsage(message){
+    var messages_arr = this.state.messages
+    messages_arr.push(message)
+    this.setState({messages: messages_arr})
+  }
   render() {
     var message_list = []
     if (!!this.state.messages) {

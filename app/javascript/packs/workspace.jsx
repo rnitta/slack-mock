@@ -40,8 +40,7 @@ class Parent extends React.Component {
       channel: "WorkspaceChannel"
     }, {
       received: (data) => { //受信時
-        console.log(data)
-
+        this.refs.main.receive_messsage(data)
       }
     })
   }
