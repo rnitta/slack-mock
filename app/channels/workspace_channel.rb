@@ -40,6 +40,15 @@ class WorkspaceChannel < ApplicationCable::Channel
       message: message.message,
       created_at: message.created_at.strftime('%Y年 %m月 %d日 %H:%M:%S')
     )
+    ActionCable.server.broadcast(
+      current_user.token,
+      id: message.id,
+      sender_id: sender.id,
+      receiver_type: message.receiver_type,
+      receiver_id: receiver.id,
+      message: message.message,
+      created_at: message.created_at.strftime('%Y年 %m月 %d日 %H:%M:%S')
+    )
   end
   def cast_to_channel(sender, receiver, message, token)
     ActionCable.server.broadcast(

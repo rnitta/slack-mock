@@ -35,6 +35,15 @@ export default class MainContainer extends React.Component {
     this.props.update_state(obj)
   }
   receive_messsage(message){
+    if(message.receiver_type == 1){
+      if(this.props.parentstate.selected != 'user' || !(this.props.parentstate.selected_user.id == message.sender_id || this.props.parentstate.selected_user.id == message.receiver_id) ){
+        return false
+      }
+    }else if(message.receiver_type == 2){
+          if(this.props.parentstate.selected != 'channel' || this.props.parentstate.selected_channel.id != message.receiver_id ){
+            return false
+          }
+        }
     var messages_arr = this.state.messages
     messages_arr.push(message)
     this.setState({messages: messages_arr})

@@ -62,13 +62,13 @@ class WorkspacesController < ApplicationController
                                                receiver_type: type,
                                                receiver_id: current_user.id,
                                                sender_id: speaking_to.id)
-                               )
+                               ).order(:created_at)
     elsif params[:type] == 'channel'
       type = 2
       channel = Channel.find_by(workspace_id: current_user.workspace_id, name: params[:name])
       messages = Message.where(workspace_id: current_user.workspace_id,
                                receiver_type: type,
-                               receiver_id: channel.id)
+                               receiver_id: channel.id).order(:created_at)
     end
     render json: { success: true,
                    messages: messages.select(:id, :sender_id, :receiver_type, :receiver_id, :message, :created_at) }

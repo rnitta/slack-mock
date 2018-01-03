@@ -4,8 +4,8 @@ class ApplicationController < ActionController::Base
   def channel_data_json
     @current_user = current_user
     @workspace_name = current_user.workspace.name
-    @channels = Channel.where(workspace_id: current_user.workspace_id, public: true).select('name', 'topic', 'count')
-    @joined_channels = current_user.channels.select('name', 'topic', 'count')
+    @channels = Channel.where(workspace_id: current_user.workspace_id, public: true).select('id', 'name', 'topic', 'count')
+    @joined_channels = current_user.channels.select('id', 'name', 'topic', 'count')
     @available_channels = @channels.pluck(:name) - @joined_channels.pluck(:name)
     @starred_channels = []
     @users = User.where(workspace_id: current_user.workspace_id).select('id', 'display_name', 'user_name', 'status')
