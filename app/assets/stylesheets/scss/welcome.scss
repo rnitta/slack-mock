@@ -1,3 +1,22 @@
-.workspace_menu{
+.root_menu{
+  width: 100%;
+  margin-top: 50px;
+  .joined_workspaces_button{
+    background-color: #ffffff;
+    color: #616161;
+    box-shadow: none!important;
+    font-size: 20px;
+    border: 1px solid #616161;
+    border-radius: 0.25rem;
+    text-align: center;
+    padding: 10px 30px;
+    display: block;
+    margin: auto;
+  }
+  .wsmenu_link{
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+  }
 
 }

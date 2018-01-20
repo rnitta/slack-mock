@@ -1,25 +1,38 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import WSmenu from './workspace_menu.jsx'
-
 export default class Button extends React.Component {
   constructor(props) {
     super(props)
-    // stateの初期値を設定
     this.state = {
-      style_wsmenu: "none"
+      menu_expanded: false
     }
   }
-  expandMenu() {
-    this.setState({style_wsmenu: "block"})
+  expand_menu() {
+    if (this.state.menu_expanded) {
+      this.setState({menu_expanded: false})
+    } else {
+      this.setState({menu_expanded: true})
+    }
   }
-
   render() {
+    var exmenu = []
+    if (this.state.menu_expanded) {
+      for (var key in localStorage) {
+        if (typeof localStorage[key] == 'string') {
+          exmenu.push(
+            <div key={JSON.parse(localStorage[key]).token}>
+              <a href={"/workspaces/" + key}>{JSON.parse(localStorage[key]).workspace_name}</a>
+            </div>
+          )
+        }
+      }
+
+    }
     return (
       <div>
-        <button className={this.props.classname} onClick={this.expandMenu.bind(this)}>{this.props.text}</button>
-        <WSmenu style={this.state.style_wsmenu}/>
+        <button className="joined_workspaces_button" onClick={this.expand_menu.bind(this)}>参加中のワークスペース</button>
+        <div className="joined_ws_list">{exmenu}</div>
       </div>
     );
   }
